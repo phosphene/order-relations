@@ -51,6 +51,39 @@ relation itself says neither.
 | **Slaving** | slow mode persists, fast mode relaxes — timescale fact | flytrap: fast→slow |
 | **Drive** | per-instance coupling read from f,g | anesthesia: λ enters f — fast side drives |
 
+## The Jacobian: one object, many reads
+
+The field's local linear map. Wherever f and g are differentiable, the
+Jacobian
+
+    J = [ ∂f/∂x  ∂f/∂y ]
+        [ ∂g/∂x  ∂g/∂y ]
+
+is defined pointwise — a pure field object (design law 2: defined, not
+asserted stable). Canonical research programs differ in *which spectral
+fact of J they read*, not in the object:
+
+| # | Read from J | Spectral fact | Canonical programs | Our row |
+|---|---|---|---|---|
+| a | eigenvalues at a fixed point | stability classification (Hartman–Grobman) | nonlinear dynamics; ecology (community matrix); neuroscience; control; macro (correspondence principle) | 1 |
+| b | leading eigenvalue → 0 | critical slowing; relaxation time diverges | critical transitions / early-warning signals; phase transitions | 7 |
+| c | Re(λ) crossing 0 | instability onset; order parameter born (α > 0) | synergetics; Landau theory; adaptive dynamics (branching points) | 11 |
+| d | eigenvector split | slow vs fast modes; slaving; adiabatic elimination | synergetics; neural fields; metabolic control | 2, 3 |
+| e | off-diagonal entries | coupling; direction of drive (per-instance) | community ecology (sign structure); systems biology (elasticities); Granger-style inference | 2 (Fix 1) |
+| f | J⁻¹ and parameter derivatives | sensitivity; control coefficients; comparative statics | metabolic control analysis; economics | (open) |
+
+The abstraction: all canonical uses are local linear reads of one field
+object. The research program supplies the point (which fixed state), the
+fact (which row), and the frame (which noun-world). The abstraction owns
+none of those — it owns J and its spectral facts. Stability (row a) is
+then visibly the special case the field-not-stability law warned about:
+a per-instance eigenvalue claim about a specific fixed point, never
+intrinsic to the relation.
+
+Row f is open: the sensitivity/control-coefficient family (J⁻¹ reads) is
+the one canonical use not yet in the inventory — a candidate for a row
+12 once a first instantiation shows up.
+
 ## Abstraction inventory
 
 Each row is an implementation unit: a math result (derivation, theorem,
