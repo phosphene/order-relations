@@ -42,7 +42,7 @@ Each layer is established by a different evidence class; the layers stack:
 | 2 | Slaving architecture (direction-free) | Fix 1; flytrap instantiation W = 29.5 s | **theorem + instance** |
 | 3 | Empirical pattern: loss ordered by integration depth; displacement-first | E-series: E4 buchnera, E6 plastid, E7 cavefish, E12 domestication (behavior-first), C4-P2 (275→154→64 Mb post-commitment), E8 yeast, E9 ECM | **empirical** (data-backed, cross-kingdom) |
 | 4 | Monograph support: electrome chorus | Cervera/Levin/Mafé (fast→slow explicit), Blackiston, Kuchling *Volvox*, Varley, G&J UAL (behavior-before-morphology), Pio-Lopez AGED (re-access) | **literature synthesis** (conceptual alignment) |
-| 4.5 | Inbound fossil record: Ediacaran second wave | Evans et al. 2026 (Sci. Adv.) — White Sea in Laurentia ~567 Ma, deep-water origin + shoreward expansion, oldest motile bilaterians; steady progression not turnover; redox null (thermal stability as λ) | **empirical** (field discovery; formation-side evidence) |
+| 4.5 | Inbound fossil record: Ediacaran second wave | Evans et al. 2026 (Sci. Adv.) — White Sea in Laurentia ~567 Ma, deep-water origin + shoreward expansion, oldest motile bilaterians (behavior-first: the anchor); steady progression not turnover; redox null (thermal stability as the observed λ for this instance — formed in a stable field, not shown to require one) | **empirical** (field discovery; formation-side evidence) |
 | 5 | **This characterization** | layers 0–4 composed | synthesis |
 
 The stack is load-bearing in one direction only: 0–1 carry the quantitative
@@ -73,7 +73,10 @@ documented in the library readout).
    (A-1 verified): relaxation → critical slowing → formation. The
    Ediacaran second wave (Evans et al. 2026) is consistent with this:
    steady progression rather than turnover — but it is field evidence,
-   not a rate-law fit.
+   not a rate-law fit. Its anchor is **behavior-first**: oldest motile
+   bilaterians (with trace fossils) precede the second wave's
+   morphological diversification — displacement-before-settling at
+   ~567 Ma.
 7. **The monograph chorus on the electrome** (fast→slow transduction is
    *explicit* in the published top-down model of Cervera/Levin/Mafé;
    behavioral-competence-before-morphology in G&J).
