@@ -105,7 +105,7 @@ simulation). The package is the research; the research is the package.
 | 2 window collapse | T-2: apparent rate vs sampling interval | order.relations | designed |
 | 3 sorting (expression) | T-3a: Vmem → expression-sorting | vi.stats + order.relations | designed |
 | 3 sorting (genome) | T-3b: second rootless lineage (COX) | vi.stats | C4-P2 extension |
-| 4 re-access | T-4: re-emergence in reverse loss order | vi.stats | designed |
+| 4 re-deployment | T-4: re-access in reverse loss order (inbound taxonomy: re-access vs de novo vs reversal — see INBOUND_OUTBOUND.md) | vi.stats + order.relations | designed |
 | 5 discrete vs continuous | T-5: endosymbiont logistic-vs-biphasic | vi.stats | **priority** |
 | — flytrap window | 24 s vs 29.5 s read-point re-verify | order.relations | **bench pending** |
 

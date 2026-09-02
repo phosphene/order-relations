@@ -16,7 +16,7 @@ Source: exploration document §6 / Appendix E (`work/marsyas6/papers/valence-ing
 | T-2 | Window collapse — apparent rate constant vs sampling interval | **implemented, verified 2026-09-02** — analytic resolution-limit curve (fast phase unresolvable past δ≈3/k₁; ratio fully collapsed by 10/k₁); fit-based: recovers 100.0 at δ=0.01, fails to recover at δ=1000 (unidentifiable); ΔAIC +154,559 → −3.9 (indistinguishable); LTEE/C4 reading 100 → 1.0, 100× collapse; 12 assertions green | order.relations (`observation.R`) |
 | T-3a | Sorting (expression) — Vmem → expression-sorting coupling | designed | vi.stats + order.relations |
 | T-3b | Sorting (genome) — second rootless lineage (COX, C4-P2) | C4-P2 extension | vi.stats |
-| T-4 | Re-access — re-emergence in reverse loss order | designed | vi.stats |
+| T-4 | Re-deployment — re-access of lost capacity in reverse loss order (reframed 2026-09-02: inbound taxonomy split — re-access is predicted by the framework; de novo is the pitchfork/formation regime, order.relations `formation.R`) | designed | vi.stats + order.relations |
 | T-5 | Discrete vs continuous — endosymbiont logistic-vs-biphasic | **priority** | vi.stats |
 | T-6 | Flytrap integration window — 24 s vs 29.5 s read-point re-verify | **bench pending** | order.relations |
 

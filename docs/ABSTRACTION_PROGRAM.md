@@ -52,6 +52,7 @@ regime map) and a code unit (function, test, simulation) at once.
 | 8 | Bi-exponential relaxation | generic two-timescale result | dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂) | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()` | LTEE, HRR/sleep fits |
 | 9 | Displacement–relaxation | ours, via the above | displacement then relaxation = the two-phase signature | (composition) | E-series |
 | 10 | Threshold window derivation | ours, via the above | W = τ₁·ln(n·a/(θ−a)) family | `integration_window()`, `window_sweep()` | flytrap 29.5 s (T-6 bench) |
+| 11 | Order-parameter formation | Haken; pitchfork amplitude equation | τ₂ẏ = α(λ)y − βy³; order parameter born at instability; the inbound half of g | `amplitude_dynamics()`, `growth_coefficient()`, `order_parameter_equilibria()`, `order_parameter_growth()`, `critical_fluctuations()`, `g_regime()` | C4 convergence, Cambrian radiation (INBOUND_OUTBOUND.md Move 2) |
 
 ## Discipline
 
