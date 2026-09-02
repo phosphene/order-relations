@@ -20,7 +20,7 @@ empirical tests live together under one roof.
 | `packages/phosphene.foundry` | Scaffolding + STDD + contract system for production-grade scientific R packages (the foundry basis) |
 | `packages/inferno` | INFERNO 7-layer evaluation protocol — deterministic evaluation of research artifacts (papers, models, claims, programs) |
 | `packages/vi.stats` | Vestigial Information statistics: CDI, integration-depth ranking, paired tests, sensitivity analysis, natural-experiment designs |
-| `packages/order.relations` *(planned)* | The order-relations program proper: two-variable slaving models, adiabatic elimination, rate-law fitting, window derivations |
+| `packages/order.relations` | **The abstraction program** — slaving without directionality, two-variable systems, adiabatic elimination, bi-exponential relaxation, threshold windows, critical slowing. Substrate-free by design law; flytrap instantiation as first mapping |
 
 ## Research Space
 

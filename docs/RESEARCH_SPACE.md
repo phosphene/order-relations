@@ -38,12 +38,13 @@ claim-by-claim audit and the four-party decoder-ring comparisons.
 Scaffolding + STDD + contract system; what makes every artifact here
 production-grade and reproducible.
 
-### `packages/order.relations` *(planned)* — the abstraction program
+### `packages/order.relations` — the abstraction program
 The mathematical core of this repo: two-variable slaving models, adiabatic
 elimination, bi-exponential rate laws, and derived quantitative predictions
 (the flytrap integration window W = τ₁·ln(2a/(θ−a)) is the prototype).
 This is the "abstract, mathematical and coding program as research and
-implementation both" — the reason the repo exists.
+implementation both" — the reason the repo exists. Scaffolded from the
+foundry basis 2026-09-02; 29 assertions green locally (unit + instantiation).
 
 ## The abstraction program — synergetics, substrate-free
 

@@ -1,0 +1,23 @@
+# R session
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user
+
+# renv library (rebuilt from lockfile)
+renv/library/
+renv/staging/
+renv/python/
+renv/sandbox/
+
+# Model outputs (reproducible from script)
+results/*.rds
+results/*.pdf
+
+# Keep validation artifacts
+!results/validation_report.json
+!results/model_summary.txt
+
+# OS
+.DS_Store
+Thumbs.db
