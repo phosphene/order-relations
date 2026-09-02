@@ -20,16 +20,26 @@ in.
 > Model the field; do not assert stability. The field is the minimal
 > object the dynamics require — the space the variables move in, the
 > couplings that act on them. Stability is a determinate claim — stable
-> against what perturbation, over what horizon, in what frame — and
-> asserting it commits the abstraction to a frame it does not need.
+> against what perturbation, over what horizon, in what frame, **and
+> for which vertex** — and asserting it commits the abstraction to a
+> frame it does not need.
 
 Field and stability work at different levels (Ed Phil, 2026-09-02): the
 field is the frame for what we do not need to infer; stability is a
 per-instance property, read from the mapping table, never intrinsic —
-the same move as Fix 1 (direction of drive per-instance). The Evans et
-al. 2026 integration is the working example: "things formed in a stable
-field" is an observation about the instance; the abstraction needs only
-the field and the crossing (α > 0).
+the same move as Fix 1 (direction of drive per-instance). Stability is
+relative to what a vertex views a given field as stable enough (Ed Phil,
+2026-09-02): a three-place relation — field, perturbation, vertex —
+where the vertex supplies the horizon. The quantitative form of that
+horizon is the integration window (row 10): a field is "stable enough"
+for v when it persists over v's window, λ·W_v ≪ 1, with W_v the
+vertex's integration window and λ the slow mode's decay rate. Critical
+slowing is the coincidence λ·W_v ~ 1 — the vertex can no longer resolve
+stable from unstable, which is the observation-window collapse (T-2)
+read from the vertex side. The Evans et al. 2026 integration is the
+working example: "things formed in a stable field" is an observation
+about the instance; the abstraction needs only the field and the
+crossing (α > 0).
 
 ## The flagship: slaving without directionality
 
@@ -78,7 +88,10 @@ fact (which row), and the frame (which noun-world). The abstraction owns
 none of those — it owns J and its spectral facts. Stability (row a) is
 then visibly the special case the field-not-stability law warned about:
 a per-instance eigenvalue claim about a specific fixed point, never
-intrinsic to the relation.
+intrinsic to the relation — and the classification itself is relative
+to the vertex: "stable enough" is λ·W_v ≪ 1, the eigenvalue compared
+against the vertex's own integration window (design law 2; row 10).
+Critical slowing (row b) is the same comparison collapsing: λ·W_v ~ 1.
 
 Row f is open: the sensitivity/control-coefficient family (J⁻¹ reads) is
 the one canonical use not yet in the inventory — a candidate for a row
