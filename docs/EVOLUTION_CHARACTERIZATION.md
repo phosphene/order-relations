@@ -17,7 +17,14 @@ re-anchors the system to a new niche or mode (behavioral first, per E12;
 the C4 machinery; the Cambrian body plan) — followed by **relaxation** in
 the new frame: the slow, genome-side settling of the metabolic layer onto
 the new anchor (genome reduction, trait loss, morphological commitment),
-which proceeds by the two-rate law. Loss and gain are the same law read
+which proceeds by the two-rate law. The behavior-first ordering of the
+displacement phase is **contiguous across major evolutionary periods and
+individual speciation events**: deepest-time record (Ediacaran second
+wave, oldest motile bilaterians with trace fossils before morphological
+diversification — Evans et al. 2026), the Cambrian body-plan radiation,
+and single-lineage events (E12 domestication, cavefish, parasitic
+lineages) all show the same fast-act-first, slow-settling-after pattern.
+Loss and gain are the same law read
 in two directions: capacity loss (outbound) is relaxation away from the
 old attractor; capacity gain (inbound) is relaxation toward the new one —
 the verified A-1 excursion loop. The observed asymmetry between loss and
