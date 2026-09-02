@@ -110,6 +110,7 @@ simulation). The package is the research; the research is the package.
 | — flytrap window | 24 s vs 29.5 s read-point re-verify | order.relations | **bench pending** |
 | — genealogy | precursor math per published standard (G-1…G-9, literate units + composition tables) | order.relations | **done 2026-09-02** — see GENEALOGY.md + genealogy/ |
 | — recomposition | arrange the relations into new configurations (registry + worked arrangements) | order.relations | **A-1 verified 2026-09-02** — see RECOMPOSITION.md + recompose/ |
+| — characterization | evolution-as-commitment-sequences synthesis (claim grades + limit map) | order.relations + valence-ingress | **done 2026-09-02** — see EVOLUTION_CHARACTERIZATION.md |
 
 ## Working rules
 

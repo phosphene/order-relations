@@ -97,6 +97,15 @@ excursion loop** — G-4 + G-5 + G-6 composed into one λ-sweep trajectory
 (relaxation → critical slowing → formation), each phase matching its
 source unit's prediction.
 
+## The characterization
+
+`docs/EVOLUTION_CHARACTERIZATION.md` composes the layers (math → rate law →
+empirical pattern → monograph chorus) into the single statement: evolution
+is a **sequence of commitments**, each a fast displacement + slow
+relaxation in the new frame; loss and gain are one trajectory (A-1) read
+on either side of the instability. Claim grades (proven / empirical /
+conjecture) and the limit map are drawn there.
+
 ## What the exercise buys us
 
 1. **Grounding.** Every abstraction in the inventory now stands on a
