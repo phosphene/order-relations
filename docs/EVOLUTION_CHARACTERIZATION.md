@@ -42,6 +42,7 @@ Each layer is established by a different evidence class; the layers stack:
 | 2 | Slaving architecture (direction-free) | Fix 1; flytrap instantiation W = 29.5 s | **theorem + instance** |
 | 3 | Empirical pattern: loss ordered by integration depth; displacement-first | E-series: E4 buchnera, E6 plastid, E7 cavefish, E12 domestication (behavior-first), C4-P2 (275→154→64 Mb post-commitment), E8 yeast, E9 ECM | **empirical** (data-backed, cross-kingdom) |
 | 4 | Monograph support: electrome chorus | Cervera/Levin/Mafé (fast→slow explicit), Blackiston, Kuchling *Volvox*, Varley, G&J UAL (behavior-before-morphology), Pio-Lopez AGED (re-access) | **literature synthesis** (conceptual alignment) |
+| 4.5 | Inbound fossil record: Ediacaran second wave | Evans et al. 2026 (Sci. Adv.) — White Sea in Laurentia ~567 Ma, deep-water origin + shoreward expansion, oldest motile bilaterians; steady progression not turnover; redox null (thermal stability as λ) | **empirical** (field discovery; formation-side evidence) |
 | 5 | **This characterization** | layers 0–4 composed | synthesis |
 
 The stack is load-bearing in one direction only: 0–1 carry the quantitative
@@ -69,7 +70,10 @@ documented in the library readout).
 5. **The precursor math is real:** G-1…G-9 reproducible (8/9), including
    the rigorous tiers (van Kampen O(ε) ladder, center-manifold exactness).
 6. **Inbound and outbound are one trajectory** across an instability
-   (A-1 verified): relaxation → critical slowing → formation.
+   (A-1 verified): relaxation → critical slowing → formation. The
+   Ediacaran second wave (Evans et al. 2026) is consistent with this:
+   steady progression rather than turnover — but it is field evidence,
+   not a rate-law fit.
 7. **The monograph chorus on the electrome** (fast→slow transduction is
    *explicit* in the published top-down model of Cervera/Levin/Mafé;
    behavioral-competence-before-morphology in G&J).

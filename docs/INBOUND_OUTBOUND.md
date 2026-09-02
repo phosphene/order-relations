@@ -117,6 +117,17 @@ the act, not the act.
 
 ## Referents for the pattern
 
+- **Ediacaran second wave as formation** (Evans et al. 2026, Sci. Adv. 12,
+  eaed9916 — extract in paper-extracts/) — White Sea assemblage found in
+  Laurentia at ~567 Ma in deep water, overlapping the Avalon assemblage:
+  the second wave is a **steady progression, not extinction-driven
+  turnover** (our A-1 single-trajectory claim); origination in stable
+  deep water, expansion shoreward (formation needs a stable field);
+  oldest motile bilaterians (behavior first); Rackla Group redox null
+  undercuts oxygenation, points at thermal stability as λ. Also a
+  differing order relation: Ediacaran offshore→onshore vs Phanerozoic
+  onshore→offshore — direction is a per-instance read of the λ
+  landscape, never intrinsic.
 - **Dollo's law and its violations** (Collin & Miglietta 2008) —
   violations cluster behaviorally, consistent with fast-variable gain.
 - **Relaxed selection** (Lahti et al. 2009) — the null for loss.
