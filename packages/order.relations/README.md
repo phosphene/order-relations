@@ -30,6 +30,7 @@ fast subsystems). The abstraction strips that:
 | 7 | Critical slowing down | `critical_slowing_rate()`, `apparent_rate_ratio()` | window collapse T-2 |
 | 8 | Bi-exponential relaxation | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()` | LTEE, HRR/sleep |
 | 10 | Threshold window derivation | `integration_window()`, `window_sweep()` | flytrap W = τ₁·ln(2a/(θ−a)) |
+| T-1 | Perturbation sweep + loss ordering | `lambda_sweep_ordering()`, `perturbation_rates()`, `loss_times()`, `reversal_boundary()` | §6 item 1: reversal is a strong-perturbation boundary, not a refutation |
 
 ## Quick Start
 

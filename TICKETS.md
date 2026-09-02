@@ -12,7 +12,7 @@ Source: exploration document §6 / Appendix E (`work/marsyas6/papers/valence-ing
 
 | ID | Claim | Status | Target package |
 |-----|-------|--------|----------------|
-| T-1 | Perturbation reversal — λ-sweep ordering matches loss order | designed | order.relations (planned) |
+| T-1 | Perturbation reversal — λ-sweep ordering matches loss order | **implemented, verified 2026-09-02** — depth exposure reverses past λ*≈1.0; shallow/uniform never reverse; uniform collapses rate ratio 24.6→1.18 (T-2 window fact); 9 assertions green | order.relations (`perturbation.R`) |
 | T-2 | Window collapse — apparent rate constant vs sampling interval | designed | order.relations (planned) |
 | T-3a | Sorting (expression) — Vmem → expression-sorting coupling | designed | vi.stats + order.relations |
 | T-3b | Sorting (genome) — second rootless lineage (COX, C4-P2) | C4-P2 extension | vi.stats |
