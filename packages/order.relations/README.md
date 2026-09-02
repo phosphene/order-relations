@@ -27,10 +27,11 @@ fast subsystems). The abstraction strips that:
 | 1 | Two-variable system | `tv_system()`, `timescale_ratio()`, `slaving_holds()` | flytrap Level 0′ |
 | 2 | Slaving relation (direction-free) | `drive_direction()`, `coupling_matrix()` | §2 science paper |
 | 3 | Adiabatic elimination | `slow_manifold()`, `effective_dynamics()`, `landscape()`, `curvature()`, `k2_from_curvature()` | Level 0′ → G → L → k₂ = κ/τ₂ |
-| 7 | Critical slowing down | `critical_slowing_rate()`, `apparent_rate_ratio()` | window collapse T-2 |
+| 7 | Critical slowing down | `critical_slowing_rate()`, `critical_ratio()` | window collapse T-2 |
 | 8 | Bi-exponential relaxation | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()` | LTEE, HRR/sleep |
 | 10 | Threshold window derivation | `integration_window()`, `window_sweep()` | flytrap W = τ₁·ln(2a/(θ−a)) |
 | T-1 | Perturbation sweep + loss ordering | `lambda_sweep_ordering()`, `perturbation_rates()`, `loss_times()`, `reversal_boundary()` | §6 item 1: reversal is a strong-perturbation boundary, not a refutation |
+| T-2 | Observation-window collapse | `apparent_rate_ratio()`, `fast_surviving()`, `resolution_delta()`, `window_collapse_sweep()`, `window_reading()`, `sample_process()`, `fit_biexp()`, `fit_monoexp()` | §6 item 2: k₁/k₂ → 1 at deep time = resolution limit, not contradiction |
 
 ## Quick Start
 

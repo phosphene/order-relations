@@ -21,12 +21,16 @@ critical_slowing_rate <- function(k2, lambda, lambda_c) {
   k2 * (1 - lambda / lambda_c)
 }
 
-#' Apparent rate ratio k1/k2_eff under critical slowing (T-2 prediction)
+#' Critical-slowing rate ratio k1/k2_eff (T-R2 address)
 #'
 #' As lambda -> lambda_c, k2_eff -> 0 and the ratio k1/k2_eff diverges;
 #' equivalently, sampled over a fixed observation window the two rates
 #' become indistinguishable (k1/k2_eff -> 1 in the deep-time reading).
 #' The two limits are the same fact read at different windows.
+#'
+#' NOTE: renamed from apparent_rate_ratio to critical_ratio (2026-09-02)
+#' to avoid collision with the T-2 observation-window function of the
+#' same name (observation.R).
 #'
 #' @param k1 numeric > 0: fast rate
 #' @param k2 numeric > 0: baseline slow rate
@@ -34,7 +38,7 @@ critical_slowing_rate <- function(k2, lambda, lambda_c) {
 #' @param lambda_c numeric
 #' @return numeric k1/k2_eff
 #' @export
-apparent_rate_ratio <- function(k1, k2, lambda, lambda_c) {
+critical_ratio <- function(k1, k2, lambda, lambda_c) {
   k2eff <- critical_slowing_rate(k2, lambda, lambda_c)
   k1 / k2eff
 }

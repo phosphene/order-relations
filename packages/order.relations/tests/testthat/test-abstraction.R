@@ -114,7 +114,7 @@ test_that("window narrows monotonically under control-parameter sweep", {
 test_that("critical slowing: slow rate vanishes at lambda_c", {
   expect_equal(critical_slowing_rate(k2 = 0.01, lambda = 0.5, lambda_c = 1), 0.005)
   expect_equal(critical_slowing_rate(k2 = 0.01, lambda = 0.99, lambda_c = 1), 1e-4)
-  ratio <- apparent_rate_ratio(k1 = 1, k2 = 0.01, lambda = 0.99, lambda_c = 1)
+  ratio <- critical_ratio(k1 = 1, k2 = 0.01, lambda = 0.99, lambda_c = 1)
   expect_equal(ratio, 1 / 1e-4, tolerance = 1e-9)
 })
 

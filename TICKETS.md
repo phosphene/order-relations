@@ -13,7 +13,7 @@ Source: exploration document §6 / Appendix E (`work/marsyas6/papers/valence-ing
 | ID | Claim | Status | Target package |
 |-----|-------|--------|----------------|
 | T-1 | Perturbation reversal — λ-sweep ordering matches loss order | **implemented, verified 2026-09-02** — depth exposure reverses past λ*≈1.0; shallow/uniform never reverse; uniform collapses rate ratio 24.6→1.18 (T-2 window fact); 9 assertions green | order.relations (`perturbation.R`) |
-| T-2 | Window collapse — apparent rate constant vs sampling interval | designed | order.relations (planned) |
+| T-2 | Window collapse — apparent rate constant vs sampling interval | **implemented, verified 2026-09-02** — analytic resolution-limit curve (fast phase unresolvable past δ≈3/k₁; ratio fully collapsed by 10/k₁); fit-based: recovers 100.0 at δ=0.01, fails to recover at δ=1000 (unidentifiable); ΔAIC +154,559 → −3.9 (indistinguishable); LTEE/C4 reading 100 → 1.0, 100× collapse; 12 assertions green | order.relations (`observation.R`) |
 | T-3a | Sorting (expression) — Vmem → expression-sorting coupling | designed | vi.stats + order.relations |
 | T-3b | Sorting (genome) — second rootless lineage (COX, C4-P2) | C4-P2 extension | vi.stats |
 | T-4 | Re-access — re-emergence in reverse loss order | designed | vi.stats |
