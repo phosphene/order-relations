@@ -7,7 +7,7 @@
 #' Design law (Ed Phil, 2026-09-02): order-relations is a place for the
 #' *abstract*. Every object here must be stateable with zero biological
 #' nouns. Biology enters only at instantiation time, via the mapping
-#' tables in `inst/examples/`.
+#' table in `flytrap.R`.
 #'
 #' @keywords internal
 "_PACKAGE"

@@ -10,7 +10,7 @@
 #' This is the formal address of the exploration's scale problem
 #' (LTEE k1/k2 = 37.7 at ~15 yr fine sampling vs C4 ~ 1.0 at ~10 Myr
 #' geological sampling): not a contradiction, a resolution ceiling.
-#' The two readings are the same fact at different windows.
+#' Full numbers: docs/VERIFIED_RESULTS.md (T-2).
 #'
 #' Analytic resolution-limit curve (deterministic):
 #'   fast_surviving(delta) = exp(-k1*delta)

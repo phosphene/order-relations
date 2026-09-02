@@ -18,9 +18,7 @@
 #' (exploration §2.4 "the deepest tension"): "inbound" events (C4
 #' convergence, Cambrian radiation, exaptation) are not fits to the
 #' relaxation law — they are the alpha > 0 regime of the same coupling.
-#' The hinge is critical slowing (row 7 / T-2): same lambda sweep,
-#' other side of lambda_c.
-#'
+#' Full argument: docs/INBOUND_OUTBOUND.md (Moves 1–3).
 #' Substrate-free: lambda is any control parameter, y any order parameter.
 #' @name formation
 NULL
