@@ -118,19 +118,14 @@ the act, not the act.
 ## Referents for the pattern
 
 - **Ediacaran second wave as formation** (Evans et al. 2026, Sci. Adv. 12,
-  eaed9916 — extract in paper-extracts/) — White Sea assemblage found in
-  Laurentia at ~567 Ma in deep water, overlapping the Avalon assemblage:
-  the second wave is a **steady progression, not extinction-driven
-  turnover** (our A-1 single-trajectory claim). **The anchor point is
-  behavior-first** (Jan 2026-09-02): the oldest motile bilaterians
-  (Dickinsonia, Kimberella + Kimberichnus traces) precede the
-  morphological diversification — deepest-time instance of
-  displacement-before-settling (E12, G&J ordering at ~567 Ma).
-  Origination occurred in a stable deep-water field (observed instance;
-  whether formation *requires* stability is untested — formation is
-  driven by crossing the instability, α > 0); Rackla Group redox null
-  undercuts oxygenation, naming thermal stability as the observed λ
-  for this instance. Also a differing order relation: Ediacaran
+  eaed9916 — extract in paper-extracts/) — deep-water White Sea assemblage
+  at ~567 Ma, Laurentia; steady progression, not turnover (A-1
+  single-trajectory claim); behavior-first anchor (oldest motile
+  bilaterians precede morphological diversification); formed in a
+  stable field (observed instance, not a requirement); redox null
+  undercuts oxygenation. Full placement in
+  [EVOLUTION_CHARACTERIZATION.md](EVOLUTION_CHARACTERIZATION.md) (layer
+  4.5, claim 6). Also a differing order relation: Ediacaran
   offshore→onshore vs Phanerozoic onshore→offshore — direction is a
   per-instance read of the λ landscape, never intrinsic.
 - **Dollo's law and its violations** (Collin & Miglietta 2008) —

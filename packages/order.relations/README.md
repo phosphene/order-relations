@@ -1,45 +1,31 @@
 # order.relations
 
-Substrate-free implementation of the synergetics abstraction program:
-two-variable systems, direction-free slaving, adiabatic elimination,
-bi-exponential relaxation, threshold integration windows, critical
-slowing down.
-
-**Design law:** abstractions contain zero biological nouns; biology
-enters only through instantiation mappings (see
-[docs/ABSTRACTION_PROGRAM.md](../../docs/ABSTRACTION_PROGRAM.md)).
+The abstraction program: two-variable systems, direction-free slaving,
+adiabatic elimination, bi-exponential relaxation, threshold windows,
+critical slowing, order-parameter formation. Substrate-free by design
+law — zero biological nouns; biology enters only through instantiation
+mappings ([design laws](../../docs/ABSTRACTION_PROGRAM.md)).
 
 ## Core formalism
 
-Two abstract variables (x, y) on phase space Γ, timescale ratio
-ε = τ₁/τ₂ ≪ 1:
+Two abstract variables (x, y), timescale ratio ε = τ₁/τ₂ ≪ 1:
 
 ```
 τ₁ẋ = f(x, y)      τ₂ẏ = g(x, y)
 ```
 
-**Slaving** is the timescale-separation fact plus coupling —
-direction-free. Drive direction is read per-instance from the
-timescale-normalized Jacobian (`drive_direction()`): fast→slow,
-slow→fast, or mutual.
-
-**Adiabatic elimination** (ε → 0): solve f(x,y) = 0 for the slow
-manifold x*(y); the order parameter obeys τ₂ẏ = G(y) = g(x*(y), y).
-The landscape L = −∫G dy has curvature κ at its minimum; the slow
-rate constant is k₂ = κ/τ₂.
-
-**Bi-exponential relaxation** after displacement:
-
-```
-ρ(t) = ρ∞ + A₁e^(−k₁t) + A₂e^(−k₂t)
-     ⇔  dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂)
-```
-
-**Integration window** (threshold crossing of n summed channels):
-
-```
-W = τ₁ · ln(n·a / (θ − a))
-```
+- **Slaving** = the timescale-separation fact plus coupling, direction-free.
+  Drive direction is per-instance, read from the Jacobian
+  (`drive_direction()`): fast→slow, slow→fast, or mutual.
+- **Adiabatic elimination** (ε → 0): solve f(x,y) = 0 for the slow
+  manifold x*(y); the order parameter obeys τ₂ẏ = G(y) = g(x*(y), y).
+  Landscape L = −∫G dy; curvature κ at its minimum; k₂ = κ/τ₂.
+- **Bi-exponential relaxation** after displacement:
+  ρ(t) = ρ∞ + A₁e^(−k₁t) + A₂e^(−k₂t) ⇔ dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂)
+- **Integration window** (threshold crossing of n summed channels):
+  W = τ₁ · ln(n·a / (θ − a))
+- **Formation** (the other half of g): τ₂ẏ = α(λ)y − βy³; order
+  parameter born at the instability, α > 0.
 
 ## Modules
 
@@ -49,6 +35,7 @@ W = τ₁ · ln(n·a / (θ − a))
 | `adiabatic.R` | elimination, landscape, k₂ | `slow_manifold()`, `effective_dynamics()`, `landscape()`, `curvature()`, `k2_from_curvature()` |
 | `relaxation.R` | bi-exponential rate law, windows | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()`, `integration_window()`, `window_sweep()` |
 | `critical.R` | critical slowing down | `critical_slowing_rate()`, `critical_ratio()` |
+| `formation.R` | order-parameter formation | `amplitude_dynamics()`, `growth_coefficient()`, `order_parameter_equilibria()`, `order_parameter_growth()`, `critical_fluctuations()`, `g_regime()` |
 | `perturbation.R` | T-1: λ-sweep loss ordering | `lambda_sweep_ordering()`, `perturbation_rates()`, `loss_times()`, `reversal_boundary()` |
 | `observation.R` | T-2: window collapse | `fast_surviving()`, `resolution_delta()`, `apparent_rate_ratio()`, `window_collapse_sweep()`, `window_reading()` |
 | `flytrap.R` | first instantiation (mapping table) | `flytrap_instantiation()` |

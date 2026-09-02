@@ -11,35 +11,31 @@ instantiation time, as a mapping table, never inside the abstraction.
 > can't, it's not an abstraction yet — it's a metaphor with a formula
 > attached.
 
-Enforced structurally in the package: every file in `R/` is noun-free
-except `flytrap.R`, which is the mapping table where biology is allowed
-in.
+Enforced structurally: every file in `R/` is noun-free except
+`flytrap.R`, the mapping table where biology is allowed in.
 
 ## Design law: field, not stability
 
 > Model the field; do not assert stability. The field is the minimal
 > object the dynamics require — the space the variables move in, the
-> couplings that act on them. Stability is a determinate claim — stable
-> against what perturbation, over what horizon, in what frame, **and
-> for which vertex** — and asserting it commits the abstraction to a
-> frame it does not need.
+> couplings that act on them. Stability is a determinate claim (against
+> what perturbation, over what horizon, for which vertex) and asserting
+> it commits the abstraction to a frame it does not need.
 
-Field and stability work at different levels (Ed Phil, 2026-09-02): the
-field is the frame for what we do not need to infer; stability is a
-per-instance property, read from the mapping table, never intrinsic —
-the same move as Fix 1 (direction of drive per-instance). Stability is
-relative to what a vertex views a given field as stable enough (Ed Phil,
-2026-09-02): a three-place relation — field, perturbation, vertex —
-where the vertex supplies the horizon. The quantitative form of that
-horizon is the integration window (row 10): a field is "stable enough"
-for v when it persists over v's window, λ·W_v ≪ 1, with W_v the
-vertex's integration window and λ the slow mode's decay rate. Critical
-slowing is the coincidence λ·W_v ~ 1 — the vertex can no longer resolve
-stable from unstable, which is the observation-window collapse (T-2)
-read from the vertex side. The Evans et al. 2026 integration is the
-working example: "things formed in a stable field" is an observation
-about the instance; the abstraction needs only the field and the
-crossing (α > 0).
+Field and stability work at different levels. The field is the frame for
+what we do not need to infer; stability is per-instance, read from the
+mapping table, never intrinsic — the same move as Fix 1 (direction of
+drive per-instance). Stability is relative to what a vertex views a
+field as stable enough: a three-place relation — field, perturbation,
+vertex — where the vertex supplies the horizon. Its quantitative form
+is the integration window (row 10): a field is "stable enough" for v
+when it persists over v's window, λ·W_v ≪ 1 (W_v the vertex's window,
+λ the slow mode's decay rate). Critical slowing is the coincidence
+λ·W_v ~ 1 — the vertex can no longer resolve stable from unstable
+(observation-window collapse, T-2, read from the vertex side). Evans et
+al. 2026 is the working example: "formed in a stable field" is an
+observation about the instance; the abstraction needs only the field
+and the crossing (α > 0).
 
 ## The flagship: slaving without directionality
 
@@ -52,8 +48,8 @@ enslaves the fast subsystems — one-way. The abstraction strips that:
 
 This is the science paper's Fix 1 (post-jury revision) promoted from
 paper edit to design law. The flytrap instantiates fast→slow;
-anesthesia instantiates λ entering f (fast side drives); but the
-relation itself says neither.
+anesthesia instantiates λ entering f (fast side drives); the relation
+itself says neither.
 
 | | Abstract (substrate-free) | Instance |
 |---|---|---|
@@ -61,10 +57,9 @@ relation itself says neither.
 | **Slaving** | slow mode persists, fast mode relaxes — timescale fact | flytrap: fast→slow |
 | **Drive** | per-instance coupling read from f,g | anesthesia: λ enters f — fast side drives |
 
-## The Jacobian: one object, many reads
+## The Jacobian: one object, many projections
 
-The field's local linear map. Wherever f and g are differentiable, the
-Jacobian
+The field's local linear map. Wherever f and g are differentiable,
 
     J = [ ∂f/∂x  ∂f/∂y ]
         [ ∂g/∂x  ∂g/∂y ]
@@ -72,16 +67,15 @@ Jacobian
 is defined pointwise — a pure field object (design law 2: defined, not
 asserted stable).
 
-**Status of the object (Ed Phil, 2026-09-02):** analytically and
+**Status of the object (Ed Phil, 2026-09-02).** Analytically and
 axiomatically we assert the existence of a mathematical object we call
 the Jacobian; it also exists in the record as a genealogical fact in the
 history of numerical methods. But it is purely algebraic and has **no
 instantiation** — any implementation is always a partial slice or
-projection of this axiomatic and analytic object. The table below is a
-list of projections: canonical research programs differ in *which
-spectral fact of J they read*, i.e. which slice they project, not in
-the object. The object itself is never instantiated; only its
-projections are.
+projection of this axiomatic object. The table below is a list of
+projections: canonical research programs differ in *which spectral fact
+of J they read*, i.e. which slice they project, not in the object. The
+object itself is never instantiated; only its projections are.
 
 | # | Read from J | Spectral fact | Canonical programs | Our row |
 |---|---|---|---|---|
@@ -92,20 +86,18 @@ projections are.
 | e | off-diagonal entries | coupling; direction of drive (per-instance) | community ecology (sign structure); systems biology (elasticities); Granger-style inference | 2 (Fix 1) |
 | f | J⁻¹ and parameter derivatives | sensitivity; control coefficients; comparative statics | metabolic control analysis; economics | (open) |
 
-The abstraction: all canonical uses are local linear reads of one field
-object. The research program supplies the point (which fixed state), the
-fact (which row), and the frame (which noun-world). The abstraction owns
-none of those — it owns J and its spectral facts. Stability (row a) is
-then visibly the special case the field-not-stability law warned about:
-a per-instance eigenvalue claim about a specific fixed point, never
-intrinsic to the relation — and the classification itself is relative
-to the vertex: "stable enough" is λ·W_v ≪ 1, the eigenvalue compared
-against the vertex's own integration window (design law 2; row 10).
-Critical slowing (row b) is the same comparison collapsing: λ·W_v ~ 1.
+The research program supplies the point (which fixed state), the fact
+(which row), and the frame (which noun-world); the abstraction owns none
+of those — it owns J and its spectral facts. Stability (row a) is the
+special case the field-not-stability law warned about: a per-instance
+eigenvalue claim about a specific fixed point, never intrinsic — and the
+classification is vertex-relative: "stable enough" is λ·W_v ≪ 1, the
+eigenvalue compared against the vertex's own window (row 10). Critical
+slowing (row b) is the same comparison collapsing: λ·W_v ~ 1.
 
-Row f is open: the sensitivity/control-coefficient family (J⁻¹ reads) is
-the one canonical use not yet in the inventory — a candidate for a row
-12 once a first instantiation shows up.
+Row f is open: the sensitivity/control-coefficient family (J⁻¹ reads)
+is the one canonical use not yet in the inventory — a candidate for a
+row 12 once a first instantiation shows up.
 
 ## Abstraction inventory
 
@@ -136,14 +128,12 @@ regime map) and a code unit (function, test, simulation) at once.
 - Every quantitative claim lands as a test or a ticket before it lands
   in a paper.
 - **Namespace discipline (Ed Phil, 2026-09-02).** Develop each given
-  research apparatus in its own namespace and reproduce its conditions
-  — nothing more. We only keep track of namespaces and work within a
-  given domain: no cross-apparatus claims, no commutation results to
-  prove or assert (a field apparatus and a determinate relative
-  stability declaration simply live in different namespaces; we never
-  mix them). Each apparatus stands in its own namespace with its
-  conditions reproduced (cf. genealogy tiers: reproducible math,
-  ambiguous bracket, data-dependent fits — each reproduced under its
-  own conditions). Implementations are projections of axiomatic
-  objects (see the Jacobian above): we never mistake a projection for
-  the object.
+  research apparatus in its own namespace and reproduce its conditions —
+  nothing more. Keep track of namespaces, work within a domain; no
+  cross-apparatus claims, no commutation results to prove or assert.
+  A field apparatus and a determinate relative stability declaration
+  simply live in different namespaces; we never mix them (cf. genealogy
+  tiers: reproducible math, ambiguous bracket, data-dependent fits —
+  each reproduced under its own conditions). Implementations are
+  projections of axiomatic objects (see the Jacobian above): never
+  mistake a projection for the object.

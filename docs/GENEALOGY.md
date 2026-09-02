@@ -1,19 +1,13 @@
 # Differing Order Relations: A Genealogy of the Precursor Math
 
-**Status:** opened 2026-09-02 (Ed Phil). Request: *"break down subsections and
-actually do the precursor math according to some published standard that we can
-reproduce. Some of these published artifacts may not be reproducible and that's
-part of the exercise — in addition to using the earlier work as a background
-realization, so we have a better ground to stand on."* Extended 2026-09-02
-(Ed Phil): literate documentation per unit, for decomposition and
-recomposition into new arrangements.
-
-**Method.** For each abstraction in the inventory (`docs/ABSTRACTION_PROGRAM.md`),
-trace the published precursor, state the math as published, reproduce it from
-first principles in a standalone script (`scripts/genealogy/`), and issue a
-verdict. Verdicts are the point: a published artifact earns "reproducible"
-only when we can re-derive it to a stated tolerance from the stated source —
-no appeal to the authors' data.
+**Status:** opened 2026-09-02 (Ed Phil). For each abstraction in the
+inventory (`docs/ABSTRACTION_PROGRAM.md`), trace the published precursor,
+state the math as published, reproduce it from first principles in a
+standalone script (`scripts/genealogy/`), and issue a verdict. Verdicts
+are the point: a published artifact earns "reproducible" only when
+re-derived to a stated tolerance from the stated source — no appeal to
+the authors' data. Extended 2026-09-02 (Ed Phil): literate
+documentation per unit, for decomposition and recomposition.
 
 **Verdict scale:**
 - **reproducible** — re-derived from the stated source to stated tolerance
