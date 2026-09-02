@@ -70,8 +70,18 @@ Jacobian
         [ ∂g/∂x  ∂g/∂y ]
 
 is defined pointwise — a pure field object (design law 2: defined, not
-asserted stable). Canonical research programs differ in *which spectral
-fact of J they read*, not in the object:
+asserted stable).
+
+**Status of the object (Ed Phil, 2026-09-02):** analytically and
+axiomatically we assert the existence of a mathematical object we call
+the Jacobian; it also exists in the record as a genealogical fact in the
+history of numerical methods. But it is purely algebraic and has **no
+instantiation** — any implementation is always a partial slice or
+projection of this axiomatic and analytic object. The table below is a
+list of projections: canonical research programs differ in *which
+spectral fact of J they read*, i.e. which slice they project, not in
+the object. The object itself is never instantiated; only its
+projections are.
 
 | # | Read from J | Spectral fact | Canonical programs | Our row |
 |---|---|---|---|---|
@@ -127,11 +137,13 @@ regime map) and a code unit (function, test, simulation) at once.
   in a paper.
 - **Namespace discipline (Ed Phil, 2026-09-02).** Develop each given
   research apparatus in its own namespace and reproduce its conditions
-  — nothing more. A field approach, provoked to sufficiently specified
-  definitory apparatus articulation, should not commute with a
-  determinate relative stability declaration; but proving that
-  non-commutation is another step, outside our job. We do not chase
-  cross-apparatus proofs; each apparatus stands in its own namespace
-  with its conditions reproduced (cf. genealogy tiers: reproducible
-  math, ambiguous bracket, data-dependent fits — each reproduced under
-  its own conditions).
+  — nothing more. We only keep track of namespaces and work within a
+  given domain: no cross-apparatus claims, no commutation results to
+  prove or assert (a field apparatus and a determinate relative
+  stability declaration simply live in different namespaces; we never
+  mix them). Each apparatus stands in its own namespace with its
+  conditions reproduced (cf. genealogy tiers: reproducible math,
+  ambiguous bracket, data-dependent fits — each reproduced under its
+  own conditions). Implementations are projections of axiomatic
+  objects (see the Jacobian above): we never mistake a projection for
+  the object.
