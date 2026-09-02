@@ -1,59 +1,86 @@
-# order.relations — Synergetics Abstraction Program
+# order.relations
 
-Substrate-free implementations of the synergetics abstraction inventory.
-**Design law (Ed Phil, 2026-09-02):** a place for the *abstract* — every
-object is stateable with zero biological nouns. Biology enters only at
-instantiation time, via mapping tables.
+Substrate-free implementation of the synergetics abstraction program:
+two-variable systems, direction-free slaving, adiabatic elimination,
+bi-exponential relaxation, threshold integration windows, critical
+slowing down.
 
-## The flagship: slaving WITHOUT directionality
+**Design law:** abstractions contain zero biological nouns; biology
+enters only through instantiation mappings (see
+[docs/ABSTRACTION_PROGRAM.md](../../docs/ABSTRACTION_PROGRAM.md)).
 
-The original synergetics formulation is one-way (order parameter enslaves
-fast subsystems). The abstraction strips that:
+## Core formalism
 
-> **Slaving = the timescale-separation fact (τ₁ ≪ τ₂) plus coupling.**
-> Direction of drive is per-instance, read from f and g — never intrinsic
-> to the relation.
+Two abstract variables (x, y) on phase space Γ, timescale ratio
+ε = τ₁/τ₂ ≪ 1:
 
-| | Abstract (substrate-free) | Instance |
+```
+τ₁ẋ = f(x, y)      τ₂ẏ = g(x, y)
+```
+
+**Slaving** is the timescale-separation fact plus coupling —
+direction-free. Drive direction is read per-instance from the
+timescale-normalized Jacobian (`drive_direction()`): fast→slow,
+slow→fast, or mutual.
+
+**Adiabatic elimination** (ε → 0): solve f(x,y) = 0 for the slow
+manifold x*(y); the order parameter obeys τ₂ẏ = G(y) = g(x*(y), y).
+The landscape L = −∫G dy has curvature κ at its minimum; the slow
+rate constant is k₂ = κ/τ₂.
+
+**Bi-exponential relaxation** after displacement:
+
+```
+ρ(t) = ρ∞ + A₁e^(−k₁t) + A₂e^(−k₂t)
+     ⇔  dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂)
+```
+
+**Integration window** (threshold crossing of n summed channels):
+
+```
+W = τ₁ · ln(n·a / (θ − a))
+```
+
+## Modules
+
+| Module | Abstraction | Functions |
 |---|---|---|
-| **Relation** | τ₁ẋ = f(x,y); τ₂ẏ = g(x,y); ε = τ₁/τ₂ ≪ 1 | Γ = (Ca²⁺-integrator, trap program) |
-| **Slaving** | slow mode persists, fast mode relaxes | flytrap: fast→slow |
-| **Drive** | per-instance coupling read from f,g | anesthesia: λ enters f |
+| `system.R` | two-variable system, slaving, drive direction | `tv_system()`, `timescale_ratio()`, `slaving_holds()`, `drive_direction()`, `coupling_matrix()` |
+| `adiabatic.R` | elimination, landscape, k₂ | `slow_manifold()`, `effective_dynamics()`, `landscape()`, `curvature()`, `k2_from_curvature()` |
+| `relaxation.R` | bi-exponential rate law, windows | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()`, `integration_window()`, `window_sweep()` |
+| `critical.R` | critical slowing down | `critical_slowing_rate()`, `critical_ratio()` |
+| `perturbation.R` | T-1: λ-sweep loss ordering | `lambda_sweep_ordering()`, `perturbation_rates()`, `loss_times()`, `reversal_boundary()` |
+| `observation.R` | T-2: window collapse | `fast_surviving()`, `resolution_delta()`, `apparent_rate_ratio()`, `window_collapse_sweep()`, `window_reading()` |
+| `flytrap.R` | first instantiation (mapping table) | `flytrap_instantiation()` |
 
-## Abstraction inventory
+## Verified predictions
 
-| Row | Abstraction | Function | First instantiation |
-|---|---|---|---|
-| 1 | Two-variable system | `tv_system()`, `timescale_ratio()`, `slaving_holds()` | flytrap Level 0′ |
-| 2 | Slaving relation (direction-free) | `drive_direction()`, `coupling_matrix()` | §2 science paper |
-| 3 | Adiabatic elimination | `slow_manifold()`, `effective_dynamics()`, `landscape()`, `curvature()`, `k2_from_curvature()` | Level 0′ → G → L → k₂ = κ/τ₂ |
-| 7 | Critical slowing down | `critical_slowing_rate()`, `critical_ratio()` | window collapse T-2 |
-| 8 | Bi-exponential relaxation | `biexp_relaxation()`, `rate_law()`, `rate_law_equilibrium()` | LTEE, HRR/sleep |
-| 10 | Threshold window derivation | `integration_window()`, `window_sweep()` | flytrap W = τ₁·ln(2a/(θ−a)) |
-| T-1 | Perturbation sweep + loss ordering | `lambda_sweep_ordering()`, `perturbation_rates()`, `loss_times()`, `reversal_boundary()` | §6 item 1: reversal is a strong-perturbation boundary, not a refutation |
-| T-2 | Observation-window collapse | `apparent_rate_ratio()`, `fast_surviving()`, `resolution_delta()`, `window_collapse_sweep()`, `window_reading()`, `sample_process()`, `fit_biexp()`, `fit_monoexp()` | §6 item 2: k₁/k₂ → 1 at deep time = resolution limit, not contradiction |
+- **T-1 perturbation reversal.** Ordering matches integration depth at
+  relaxation (ρ = +0.99); depth-targeted perturbation reverses it
+  (ρ = −0.99 at λ = 5, boundary λ* = 1.0); shallow/uniform exposure
+  never reverse rank.
+- **T-2 window collapse.** Observable rate ratio: 100.0 at fine
+  sampling → 1.0 at coarse (analytic, monotone). Fit-based: ΔAIC
+  +154,559 → −3.9 across the sweep. The LTEE/C4 ratio gap is a
+  resolution limit, not a contradiction.
+- **Flytrap instantiation.** From published biophysics only:
+  ε = 3.09e-5, k₁ = 0.125 s⁻¹, W = 29.4 s (two-channel) / 23.9 s
+  (one-channel) — both inside the 20–30 s published bracket.
 
-## Quick Start
+Full numbers: [docs/VERIFIED_RESULTS.md](../../docs/VERIFIED_RESULTS.md).
+
+## Install & test
 
 ```r
-devtools::load_all(".")        # or: source R/ files
-ft <- flytrap_instantiation()  # the first mapping table
-ft$k1                          # 0.125 s^-1  (derived, not fitted)
-ft$window_two_channel          # 29.5 s (Di Palma bracket 20-30 s)
+devtools::load_all("packages/order.relations")
+devtools::test("packages/order.relations")   # 51 assertions
 ```
 
-## Test
+## References
 
-```bash
-Rscript run_tests.R            # or: testthat::test_local()
-```
-
-## Architecture
-
-MPI Handoff Blueprint: pure functions, contract validation, no global
-state. 17 tests across the inventory + instantiation, including the
-flagged flytrap read-point discrepancy (24 s vs 29.5 s — both inside the
-published bracket; bench C4-P1 is the final word).
+- Haken H. *Synergetics*. Springer, 1983.
+- Exploration document, §2.5/§6: `work/marsyas6/papers/valence-ingress/`
+  (woodchipper workspace).
 
 ## License
 

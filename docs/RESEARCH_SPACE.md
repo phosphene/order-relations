@@ -18,6 +18,12 @@ The public-facing distillation of the same work is the science paper
 (`valence-ingress-science-paper.md`, rev 2), which cites out to the
 exploration corpus.
 
+**Design + results:**
+- [ABSTRACTION_PROGRAM.md](ABSTRACTION_PROGRAM.md) — the design law,
+  slaving without directionality, the abstraction inventory
+- [VERIFIED_RESULTS.md](VERIFIED_RESULTS.md) — T-1/T-2 numeric results,
+  51 assertions green
+
 ## How the packages map onto the exploration
 
 ### `packages/vi.stats` — the empirical core
