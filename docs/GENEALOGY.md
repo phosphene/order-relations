@@ -87,6 +87,16 @@ in a new configuration, read each unit's interfaces and wire them.
 - [G-8 — van Kampen: systematic elimination](genealogy/G-08.md)
 - [G-9 — Center manifold: the exact slaving manifold](genealogy/G-09.md)
 
+## Recomposition
+
+The units decompose (see above); arrangements recompose them. The contract
+is `docs/genealogy/registry.csv` (machine-readable provides/consumes edges);
+worked arrangements live in `scripts/recompose/` with the ledger in
+`docs/RECOMPOSITION.md`. First arrangement verified: **A-1 the full
+excursion loop** — G-4 + G-5 + G-6 composed into one λ-sweep trajectory
+(relaxation → critical slowing → formation), each phase matching its
+source unit's prediction.
+
 ## What the exercise buys us
 
 1. **Grounding.** Every abstraction in the inventory now stands on a
