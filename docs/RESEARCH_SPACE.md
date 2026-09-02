@@ -108,6 +108,7 @@ simulation). The package is the research; the research is the package.
 | 4 re-deployment | T-4: re-access in reverse loss order (inbound taxonomy: re-access vs de novo vs reversal — see INBOUND_OUTBOUND.md) | vi.stats + order.relations | designed |
 | 5 discrete vs continuous | T-5: endosymbiont logistic-vs-biphasic | vi.stats | **priority** |
 | — flytrap window | 24 s vs 29.5 s read-point re-verify | order.relations | **bench pending** |
+| — genealogy | precursor math per published standard (G-1…G-7) | order.relations | **done 2026-09-02** — see GENEALOGY.md |
 
 ## Working rules
 
