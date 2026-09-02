@@ -15,6 +15,22 @@ Enforced structurally in the package: every file in `R/` is noun-free
 except `flytrap.R`, which is the mapping table where biology is allowed
 in.
 
+## Design law: field, not stability
+
+> Model the field; do not assert stability. The field is the minimal
+> object the dynamics require — the space the variables move in, the
+> couplings that act on them. Stability is a determinate claim — stable
+> against what perturbation, over what horizon, in what frame — and
+> asserting it commits the abstraction to a frame it does not need.
+
+Field and stability work at different levels (Ed Phil, 2026-09-02): the
+field is the frame for what we do not need to infer; stability is a
+per-instance property, read from the mapping table, never intrinsic —
+the same move as Fix 1 (direction of drive per-instance). The Evans et
+al. 2026 integration is the working example: "things formed in a stable
+field" is an observation about the instance; the abstraction needs only
+the field and the crossing (α > 0).
+
 ## The flagship: slaving without directionality
 
 In the original synergetics formulation (Haken 1983) the order parameter
