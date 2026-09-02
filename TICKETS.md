@@ -19,7 +19,7 @@ Source: exploration document §6 / Appendix E (`work/marsyas6/papers/valence-ing
 | T-4 | Re-deployment — re-access of lost capacity in reverse loss order (reframed 2026-09-02: inbound taxonomy split — re-access is predicted by the framework; de novo is the pitchfork/formation regime, order.relations `formation.R`) | designed | vi.stats + order.relations |
 | T-5 | Discrete vs continuous — endosymbiont logistic-vs-biphasic | **priority** | vi.stats |
 | T-6 | Flytrap integration window — 24 s vs 29.5 s read-point re-verify | **bench pending** | order.relations |
-| T-7 | Genealogy — reproduce precursor math per published standard (G-1…G-7, `scripts/genealogy/`) | **done 2026-09-02** — 6/7 reproducible, G-7 partially (channel-count ambiguity) | order.relations |
+| T-7 | Genealogy — reproduce precursor math per published standard (G-1…G-9, `scripts/genealogy/`, literate units in `docs/genealogy/`) | **done 2026-09-02** — 8/9 reproducible, G-7 partially (channel-count ambiguity); extended with van Kampen (G-8) + center manifold (G-9) tiers + composition tables | order.relations |
 
 ---
 
