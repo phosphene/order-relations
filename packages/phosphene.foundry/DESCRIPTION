@@ -1,0 +1,36 @@
+Type: Package
+Package: phosphene.foundry
+Title: Phosphene R Artifact Foundry — Production-Grade Scientific Package Template
+Version: 0.1.0
+Authors@R: c(
+    person("Ed", "Phillips", role = c("aut", "cre"), email = "ed@phosphene.dev"),
+    person("Jan", "Ritch-Frel", role = "aut"),
+    person("Flow", "Feel", role = "aut", comment = "AI platform engineer")
+  )
+Description: Enterprise-grade R package scaffolding, CI/CD pipelines, and
+    development standards for scientific research teams. Implements the MPI
+    Handoff Blueprint architecture — pure functional interfaces, deterministic
+    environments, stochastic test-driven development (STDD), and automated
+    quality gates. Designed to bridge the gap between academic research code
+    and production-grade reproducible analysis packages.
+License: MIT + file LICENSE
+URL: https://github.com/phosphene/order-relations
+BugReports: https://github.com/phosphene/order-relations/issues
+Depends:
+    R (>= 4.4.0)
+Imports:
+    withr
+Suggests:
+    testthat (>= 3.0.0),
+    cucumber,
+    covr,
+    lintr,
+    styler,
+    mockery,
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr

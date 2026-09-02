@@ -1,0 +1,35 @@
+Package: inferno
+Title: INFERNO Evaluation Protocol
+Version: 0.1.0
+Authors@R: c(
+    person("Ed", "Phil", role = c("aut", "cre"),
+           email = "ed@phosphene.io"),
+    person("Flow", role = "aut",
+           email = "flow@ind.media")
+  )
+Description: Formal 7-layer evaluation protocol for research claims,
+    using Formal Concept Analysis (fcaR), Jensen-Shannon divergence,
+    and content-addressable storage. Implements the INFERNO (Inductive
+    Framework for Evaluating Research through Normalized Ontologies)
+    method for assessing epistemic weight, confidence, and
+    integrability of scientific claims.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    R6,
+    fcaR (>= 2.1.0),
+    igraph,
+    philentropy,
+    duckdb,
+    DBI,
+    digest,
+    jsonlite,
+    yaml
+Suggests:
+    testthat (>= 3.0.0),
+    withr,
+    cucumber
+Config/testthat/edition: 3

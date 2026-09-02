@@ -1,0 +1,19 @@
+Type: Package
+Package: demo.betabinomial
+Title: Beta-Binomial Bayesian Analysis Demo
+Version: 0.1.0
+Authors@R: c(
+    person("Ed", "Phillips", role = c("aut", "cre")),
+    person("Flow", "Feel", role = "aut")
+  )
+Description: Demo analysis artifact forged by the Phosphene R Artifact
+    Foundry. Demonstrates all four tiers of the testing pyramid on a
+    conjugate Beta-Binomial Bayesian analysis.
+License: MIT + file LICENSE
+Depends:
+    R (>= 4.4.0)
+Suggests:
+    testthat (>= 3.0.0),
+    cucumber
+Config/testthat/edition: 3
+Encoding: UTF-8

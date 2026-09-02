@@ -1,0 +1,189 @@
+# =============================================================================
+# INFERNO-R Evaluation Target: Levin Bioelectric Cognition Program
+# =============================================================================
+# This YAML defines an EvaluationTarget for Michael Levin's research program
+# (bioelectric morphogenesis, GARD pre-replicator findings, universal
+# steganography / Platonic ingression framework) along with an AxiomSet
+# formal context for the 7-layer INFERNO evaluation protocol.
+#
+# Generated: 2026-07-25
+# Source:    drafts/marsyas6/levin-inferno-2026-07-24.md
+# =============================================================================
+
+evaluation_target:
+  artifact_type: "program"
+  title: "Levin Bioelectric Cognition Program"
+  authors:
+    - "Levin, M."
+  year: 2024
+  doi: null
+  domain_dims:
+    D1: "Developmental biology"
+    D2: "Biophysics"
+    D3: "Cognitive science"
+  metadata:
+    source: "drafts/marsyas6/levin-inferno-2026-07-24.md"
+    subprograms:
+      - "GARD pre-replicator oscillation (Piglioli collaboration)"
+      - "Bioelectric morphogenesis / xenobots"
+      - "Universal steganography / Platonic ingression"
+    INFERNO_version: "manual-7-layer"
+
+  # -------------------------------------------------------------------------
+  # Key Claims — extracted from the manual INFERNO pass
+  # -------------------------------------------------------------------------
+  # M-failure codes from the class definition:
+  #   PASS, M1, M2, M3, M4, M5, M6
+  claims:
+    - id: "C1"
+      text: "There is a detectable oscillating signature that precedes replicator emergence in GARD simulations, and optimizing a causal information theory metric accelerates replicator appearance"
+      evidence: "Computational GARD simulation runs show an oscillating quantity with increasing amplitude before replicator emergence; external intervention on a causal information theory metric accelerates replicator appearance"
+      register: "R1_research"
+      m_failure: "PASS"
+
+    - id: "C2"
+      text: "The pre-replicator pattern is causally efficacious — it pulls itself up by its own bootstraps within the material, creating functional organization before any Darwinian individual exists"
+      evidence: "Same GARD simulation data as C1, but framed as self-causation (bootstrapping narrative)"
+      register: "R2_rhetorical"
+      m_failure: "M5"
+
+    - id: "C3"
+      text: "This bootstrapping dynamic is happening everywhere in nature — a universal principle of self-organization"
+      evidence: "None beyond the single GARD simulation"
+      register: "R2_rhetorical"
+      m_failure: "M4"
+
+    - id: "C4"
+      text: "Patterns soak into all degrees of freedom of any system (universal steganography) — cognitive patterns occupy available slack in any substrate without being explicitly imported"
+      evidence: "Xenobots/anthrobots exhibit novel behaviors not predicted by genome; Platonic metaphor invoked"
+      register: "R2_rhetorical"
+      m_failure: "M6"
+
+    - id: "C5"
+      text: "Physical bodies are pointers to patterns in Platonic space, with a feedback loop where patterns guide future development of physical interfaces to create more ingression opportunities"
+      evidence: "Mathematical Platonism argument (primes, Feigenbaum constants), extended by analogy to cognitive patterns"
+      register: "R2_rhetorical"
+      m_failure: "M6"
+
+
+# =============================================================================
+# AxiomSet — Formal Context
+# =============================================================================
+# Objects: 5 key concepts from the Levin program
+# Attributes: 7 formal properties assessed by the INFERNO protocol
+#
+# The incidence matrix captures which formal properties each concept
+# satisfies, enabling lattice-theoretic analysis and WCI computation.
+#
+# Domain mapping:
+#   D1 → Developmental biology — objects 1 (GARD_pre_replicator)
+#   D2 → Biophysics — objects 1, 2, 3 (GARD, Xenobot, Bioelectric)
+#   D3 → Cognitive science — objects 4, 5 (Platonic_ingression, Causal_IT)
+# -------------------------------------------------------------------------
+
+axiom_set:
+  metric: "js"
+  metadata:
+    creator: "INFERNO-R Step 15"
+    timestamp: "2026-07-25T01:05:00Z"
+    notes: "Formal context for Levin program evaluation based on manual INFERNO pass"
+
+  objects:
+    - "GARD_pre_replicator"
+    - "Xenobot_self_organization"
+    - "Bioelectric_morphogenesis"
+    - "Platonic_ingression"
+    - "Causal_information_theory"
+
+  attributes:
+    - "computational_evidence"
+    - "wet_lab_evidence"
+    - "formal_machinery"
+    - "independent_replication"
+    - "falsifiable"
+    - "published"
+    - "explanatory_power"
+
+  # Incidence matrix (5 objects × 7 attributes)
+  # Row order: same as objects above
+  # Column order: same as attributes above
+  incidence:
+    # GARD_pre_replicator: comp evidence yes, wet lab no, formal machinery yes,
+    #   independent replication no, falsifiable yes, published no, explanatory yes
+    - [1, 0, 1, 0, 1, 0, 1]
+
+    # Xenobot_self_organization: comp evidence yes, wet lab yes, formal machinery
+    #   no (not fully formalized as a theory), independent replication yes,
+    #   falsifiable yes, published yes, explanatory yes
+    - [1, 1, 0, 1, 1, 1, 1]
+
+    # Bioelectric_morphogenesis: strongest across the board
+    - [1, 1, 1, 1, 1, 1, 1]
+
+    # Platonic_ingression: no formal properties satisfied — purely philosophical
+    #   framing at this stage
+    - [0, 0, 0, 0, 0, 0, 0]
+
+    # Causal_information_theory: computational evidence, formal machinery,
+    #   independent replication (Hoel/Ay lineage), published, falsifiable,
+    #   explanatory; no wet-lab evidence
+    - [1, 0, 1, 1, 1, 1, 1]
+
+  domain_mapping:
+    D1: "Developmental biology"
+    D2: "Biophysics"
+    D3: "Cognitive science"
+
+  # Object-to-domain mapping
+  object_domains:
+    GARD_pre_replicator: ["D1", "D2"]
+    Xenobot_self_organization: ["D1", "D2"]
+    Bioelectric_morphogenesis: ["D1", "D2"]
+    Platonic_ingression: ["D3"]
+    Causal_information_theory: ["D2", "D3"]
+
+  # Attribute-to-domain mapping
+  attribute_domains:
+    computational_evidence: ["D2"]
+    wet_lab_evidence: ["D1"]
+    formal_machinery: ["D2", "D3"]
+    independent_replication: ["D1", "D2"]
+    falsifiable: ["D1", "D3"]
+    published: ["D1", "D2", "D3"]
+    explanatory_power: ["D1", "D2", "D3"]
+
+
+# =============================================================================
+# Evaluation Configuration
+# =============================================================================
+#
+# These settings mirror the `config` argument to evaluate().
+# When the R package is runnable, this YAML can be loaded and dispatched:
+#
+#   library(yaml)
+#   cfg <- yaml::read_yaml("levin-program-eval.yaml")
+#   target <- EvaluationTarget$new(
+#     artifact_type = cfg$evaluation_target$artifact_type,
+#     title         = cfg$evaluation_target$title,
+#     authors       = cfg$evaluation_target$authors,
+#     year          = cfg$evaluation_target$year,
+#     domain_dims   = cfg$evaluation_target$domain_dims,
+#     claims        = lapply(cfg$evaluation_target$claims, function(c) {
+#       Claim$new(id = c$id, text = c$text, evidence = c$evidence,
+#                 register = c$register, m_failure = c$m_failure)
+#     })
+#   )
+#   # ... build AxiomSet from the incidence matrix ...
+#   result <- evaluate(target, axiom_set)
+#   print(result)
+# -------------------------------------------------------------------------
+
+config:
+  seed: 42
+  verbose: true
+  max_attributes: 50
+  max_density: 0.85
+  compute_js_divergence: false
+  layer_overrides:
+    L3:
+      manual_register: null

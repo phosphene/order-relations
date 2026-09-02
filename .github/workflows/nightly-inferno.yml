@@ -1,0 +1,57 @@
+name: INFERNO Nightly Integration
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 3 AM UTC daily
+  workflow_dispatch: {}   # manual trigger
+
+env:
+  RUN_INTEGRATION: "true"
+
+jobs:
+  integration:
+    name: INFERNO Integration + BDD Tests
+    runs-on: ubuntu-latest
+    container: rocker/r-ver:4.4.0
+    env:
+      R_REPOS: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system deps
+        run: apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/R/site-library
+          key: ${{ runner.os }}-inferno-nightly-${{ hashFiles('packages/inferno/DESCRIPTION') }}
+
+      - name: Install dependencies
+        run: |
+          Rscript -e "
+            options(repos = Sys.getenv('R_REPOS'))
+            install.packages(c('remotes', 'fcaR', 'igraph', 'philentropy', 'duckdb', 'DBI', 'digest', 'jsonlite', 'yaml', 'testthat', 'withr'))
+            setwd('packages/inferno')
+            remotes::install_deps(dependencies = TRUE)
+          "
+
+      - name: Run unit tests (sanity check)
+        run: |
+          cd packages/inferno
+          Rscript -e "testthat::test_local(filter = 'unit', reporter = testthat::CheckReporter)"
+
+      - name: Run BDD specs
+        run: |
+          cd packages/inferno
+          Rscript -e "testthat::test_local(filter = 'bdd', reporter = testthat::CheckReporter)"
+
+      - name: Run integration tests
+        run: |
+          cd packages/inferno
+          Rscript -e "testthat::test_local(filter = 'integration', reporter = testthat::CheckReporter)"
+
+      - name: Run property tests
+        run: |
+          cd packages/inferno
+          Rscript -e "testthat::test_local(filter = 'property', reporter = testthat::CheckReporter)"
