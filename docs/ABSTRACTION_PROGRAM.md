@@ -125,3 +125,13 @@ regime map) and a code unit (function, test, simulation) at once.
   package.
 - Every quantitative claim lands as a test or a ticket before it lands
   in a paper.
+- **Namespace discipline (Ed Phil, 2026-09-02).** Develop each given
+  research apparatus in its own namespace and reproduce its conditions
+  — nothing more. A field approach, provoked to sufficiently specified
+  definitory apparatus articulation, should not commute with a
+  determinate relative stability declaration; but proving that
+  non-commutation is another step, outside our job. We do not chase
+  cross-apparatus proofs; each apparatus stands in its own namespace
+  with its conditions reproduced (cf. genealogy tiers: reproducible
+  math, ambiguous bracket, data-dependent fits — each reproduced under
+  its own conditions).
