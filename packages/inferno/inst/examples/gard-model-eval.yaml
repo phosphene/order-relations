@@ -1,0 +1,202 @@
+# =============================================================================
+# INFERNO-R Evaluation Target: GARD Model (Graded Autocatalysis Replication Domain)
+# =============================================================================
+# This YAML defines an EvaluationTarget for the GARD model — Doron Lancet's
+# Lipid World / compositional information framework — along with an AxiomSet
+# formal context for the 7-layer INFERNO evaluation protocol.
+#
+# Generated: 2026-07-25
+# Source:    drafts/marsyas6/gard-inferno-2026-07-24.md
+# =============================================================================
+
+evaluation_target:
+  artifact_type: "model"
+  title: "GARD Model"
+  authors:
+    - "Lancet, D."
+    - "Segrè, D."
+    - "Markovitch, O."
+  year: 2024
+  doi: null
+  domain_dims:
+    D1: "Prebiotic chemistry"
+    D2: "Information theory"
+    D3: "Evolutionary biology"
+  metadata:
+    source: "drafts/marsyas6/gard-inferno-2026-07-24.md"
+    lineage:
+      - "Oparin-Haldane (primordial soup, 1924–1929)"
+      - "Kauffman autocatalytic sets (1971, 1986)"
+      - "Eigen quasispecies (1971)"
+      - "Bangham liposomes (1961)"
+    subprograms:
+      - "Polymer GARD (Shenhav et al., 2005)"
+      - "Metabolic GARD / M-GARD (Markovitch & Lancet, 2010s)"
+      - "GARD + molecular dynamics (Kahana & Lancet, 2019)"
+    INFERNO_version: "manual-7-layer"
+
+  # ---------------------------------------------------------------------------
+  # Key Claims — extracted from the manual INFERNO pass
+  # ---------------------------------------------------------------------------
+  # M-failure codes from the class definition:
+  #   PASS, M1, M2, M3, M4, M5, M6
+  #
+  # Mapping of manual M-failure findings to INFERNO codes:
+  #   M4 — overgeneralization (claim extrapolated beyond the evidence)
+  #   M5 — overclaiming causes (claim asserts causal/explanatory force
+  #        that the evidence does not fully warrant)
+  # ---------------------------------------------------------------------------
+  claims:
+    - id: "C1"
+      text: "Compositional assemblies can store and propagate information — molecular count vectors in lipid assemblies carry heritable information across fission events"
+      evidence: "Gillespie algorithm Monte Carlo simulations of Graded Autocatalysis Replication Domain kinetics, composome classification via compositional homeostasis and compotype dynamics in βij catalytic network simulations"
+      register: "R1_research"
+      m_failure: "PASS"
+
+    - id: "C2"
+      text: "GARD exhibits Darwinian evolution — composomes can be selected and undergo heritable variation under GARD kinetics, demonstrating natural selection in compositional space"
+      evidence: "Mayer, Lancet & Markovitch (2024, Life) — order and complexity parameters show selection under specific parameter regimes; 2012 Lancet/Markovitch rebuttal to Szathmáry 2010 critique"
+      register: "R1_research"
+      m_failure: "M5"
+
+    - id: "C3"
+      text: "The compositional genome (lipid assembly composition) preceded the sequence genome (RNA/DNA) in the origin of life — Lipid World is an evolutionary precursor to RNA World"
+      evidence: "Extrapolation from GARD simulation dynamics; Enceladus/meteorite amphiphile abundance (Kahana, Schmitt-Kopplin & Lancet, 2019); no direct experimental evidence of temporal precedence"
+      register: "R2_rhetorical"
+      m_failure: "M4"
+
+    - id: "C4"
+      text: "Compositional information is a fundamentally different kind of information from sequence information — analogous to analog vs digital signal encoding, with distinct error modes and fidelity thresholds"
+      evidence: "Formal distinction between molecular count vectors (compositional) and polymer sequences (digital); Gross et al. (2014) quasispecies transfer; independent formal analysis"
+      register: "R1_research"
+      m_failure: "PASS"
+
+
+# =============================================================================
+# AxiomSet — Formal Context
+# =============================================================================
+# Objects: 4 core concepts from the GARD model
+# Attributes: 4 formal properties mapped across L1–L4 epistemic levels
+#   × D1–D3 domain dimensions
+#
+# Domain mapping:
+#   D1 → Prebiotic chemistry — substrate plausibility, empirical base
+#   D2 → Information theory — formal information transfer machinery
+#   D3 → Evolutionary biology — selection, quasispecies, heritability
+# ---------------------------------------------------------------------------
+
+axiom_set:
+  metric: "js"
+  metadata:
+    creator: "INFERNO-R Step 14"
+    timestamp: "2026-07-25T01:05:00Z"
+    notes: >
+      Formal context for GARD model evaluation based on manual INFERNO pass.
+      Attribute axis spans L1 (computational_evidence) → L2 (formal_machinery)
+      → L3 (independent_replication) → L4 (falsifiable), each assigned to
+      a primary domain dimension.
+
+  objects:
+    - "composome"
+    - "compotype"
+    - "gard_kinetics"
+    - "mgard_metabolism"
+
+  attributes:
+    - "computational_evidence"
+    - "formal_machinery"
+    - "independent_replication"
+    - "falsifiable"
+
+  # Incidence matrix (4 objects × 4 attributes)
+  # Row order: same as objects above
+  # Column order: same as attributes above
+  #
+  # Attribute–epistemic–domain mapping:
+  #   computational_evidence   → L1 (Observation), D1 (Prebiotic chemistry)
+  #   formal_machinery         → L2 (Inference),  D2 (Information theory)
+  #   independent_replication  → L3 (Program evaluation), D1 (Prebiotic chemistry)
+  #   falsifiable              → L4 (Convergence), D3 (Evolutionary biology)
+  #
+  incidence:
+    # composome: strong computational evidence, formal machinery (GARD kinetics +
+    #   composome classification), replicable in principle but no independent
+    #   replication from other labs, falsifiable (compositional homeostasis
+    #   is a testable prediction)
+    - [1, 1, 0, 1]
+
+    # compotype: same as composome — computational evidence and formal
+    #   machinery for quasispecies dynamics in compositional space, no
+    #   independent replication, falsifiable
+    - [1, 1, 0, 1]
+
+    # gard_kinetics: Gillespie algorithm has strong computational evidence
+    #   (runs in multiple simulation contexts), fully formalized kinetic
+    #   machinery, has been independently replicated (Gross et al. 2014,
+    #   Szathmáry engagement), falsifiable
+    - [1, 1, 1, 1]
+
+    # mgard_metabolism: computational evidence (ongoing Weizmann
+    #   supercomputing runs), formal machinery (head-group modifications,
+    #   clipping, transport), no independent replication, falsifiable in
+    #   principle
+    - [1, 1, 0, 1]
+
+  domain_mapping:
+    D1: "Prebiotic chemistry"
+    D2: "Information theory"
+    D3: "Evolutionary biology"
+
+  # Object-to-domain mapping
+  object_domains:
+    composome: ["D1", "D2"]
+    compotype: ["D2", "D3"]
+    gard_kinetics: ["D1", "D2", "D3"]
+    mgard_metabolism: ["D1"]
+
+  # Attribute-to-domain mapping (+ epistemic level annotation)
+  attribute_domains:
+    computational_evidence: ["D1"]
+    #   ← L1 (Observation)
+    formal_machinery: ["D2"]
+    #   ← L2 (Inference)
+    independent_replication: ["D1"]
+    #   ← L3 (Program evaluation)
+    falsifiable: ["D3"]
+    #   ← L4 (Convergence)
+
+
+# =============================================================================
+# Evaluation Configuration
+# =============================================================================
+#
+# These settings mirror the `config` argument to evaluate().
+# When the R package is runnable, this YAML can be loaded and dispatched:
+#
+#   library(yaml)
+#   cfg <- yaml::read_yaml("gard-model-eval.yaml")
+#   target <- EvaluationTarget$new(
+#     artifact_type = cfg$evaluation_target$artifact_type,
+#     title         = cfg$evaluation_target$title,
+#     authors       = cfg$evaluation_target$authors,
+#     year          = cfg$evaluation_target$year,
+#     domain_dims   = cfg$evaluation_target$domain_dims,
+#     claims        = lapply(cfg$evaluation_target$claims, function(c) {
+#       Claim$new(id = c$id, text = c$text, evidence = c$evidence,
+#                 register = c$register, m_failure = c$m_failure)
+#     })
+#   )
+#   # ... build AxiomSet from the incidence matrix ...
+#   result <- evaluate(target, axiom_set)
+#   print(result)
+# -------------------------------------------------------------------------
+
+config:
+  seed: 42
+  verbose: true
+  max_attributes: 50
+  max_density: 0.85
+  compute_js_divergence: false
+  layer_overrides:
+    L3:
+      manual_register: null

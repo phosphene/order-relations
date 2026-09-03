@@ -1,0 +1,10 @@
+id,tier,verdict,provides,consumes,composes_with
+G-01,structure,reproducible,static order-parameter value phi*(T),control parameter T/Tc,G-05 G-04
+G-02,elimination,reproducible,reduced 1-variable rate law (QSSA),full ODE + rate constants,G-03 G-08
+G-03,elimination,reproducible,reduced slow dynamics (O(1) manifold),eps + coupling (a,b),G-02 G-08 G-09
+G-04,dynamics,reproducible,relaxation-time divergence near instability,control parameter r,G-05 T-02 C4-P1
+G-05,dynamics,reproducible,order-parameter growth curve,alpha beta psi0,G-01 G-04 G-08 G-09
+G-06,dynamics,reproducible,parameter recovery from two-rate data,data + starting values,T-02 G-05
+G-07,structure,partially,threshold window W = tau*ln(n*a/(theta-a)),tau a/theta channel count n,T-06 G-04 G-05
+G-08,elimination,reproducible,corrected manifold to any order in eps,eps + coupling (a,b),G-03 G-09
+G-09,elimination,reproducible,exact reduction to slow dynamics,system Jacobian + nonlinear terms,G-03 G-08 G-05

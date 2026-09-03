@@ -1,0 +1,86 @@
+name: inferno CI
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'packages/inferno/**'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'packages/inferno/**'
+
+jobs:
+  lint:
+    name: INFERNO Lint
+    runs-on: ubuntu-latest
+    container: rocker/r-ver:4.4.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system deps
+        run: apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+      - name: Install linting tools
+        run: |
+          Rscript -e "install.packages(c('styler', 'lintr'), repos = 'https://packagemanager.posit.co/cran/__linux__/jammy/latest')"
+      - name: Lint
+        run: |
+          cd packages/inferno
+          Rscript -e "lintr::lint_package()"
+
+  test:
+    name: INFERNO Tests
+    needs: lint
+    runs-on: ubuntu-latest
+    container: rocker/r-ver:4.4.0
+    env:
+      R_REPOS: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system deps
+        run: apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/R/site-library
+          key: ${{ runner.os }}-inferno-pkgs-${{ hashFiles('packages/inferno/DESCRIPTION') }}
+      - name: Install dependencies
+        run: |
+          Rscript -e "
+            options(repos = Sys.getenv('R_REPOS'))
+            install.packages(c('remotes', 'covr'))
+            setwd('packages/inferno')
+            remotes::install_deps(dependencies = TRUE)
+          "
+      - name: Run tests
+        run: |
+          cd packages/inferno
+          Rscript -e "testthat::test_local(reporter = testthat::CheckReporter)"
+
+  coverage:
+    name: INFERNO Coverage
+    needs: test
+    runs-on: ubuntu-latest
+    container: rocker/r-ver:4.4.0
+    env:
+      R_REPOS: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system deps
+        run: apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+      - name: Install dependencies
+        run: |
+          Rscript -e "
+            options(repos = Sys.getenv('R_REPOS'))
+            install.packages(c('remotes', 'covr'))
+            setwd('packages/inferno')
+            remotes::install_deps(dependencies = TRUE)
+          "
+      - name: Check coverage (>= 80%)
+        run: |
+          cd packages/inferno
+          Rscript -e "
+            cov <- covr::package_coverage()
+            pct <- covr::percent_coverage(cov)
+            message('Coverage: ', round(pct, 2), '%')
+            if (pct < 80) stop('Coverage below 80% threshold: ', round(pct, 2), '%')
+          "
