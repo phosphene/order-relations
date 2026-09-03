@@ -52,10 +52,15 @@ test_that("T-2g: dAIC strongly supports bi-exp at fine sampling", {
   expect_gt(sweep$dAIC[1], 20)
 })
 
-test_that("T-2h: dAIC ~ 0 at coarse sampling (models indistinguishable)", {
+test_that("T-2h: coarse sampling — bi-exp no longer preferred (AICc)", {
   sweep <- window_collapse_sweep(1, 0.01, deltas = 10^seq(-2, 3, length.out = 13),
                                  noise = 0.001, seed = 42)
-  expect_lt(abs(tail(sweep$dAIC, 1)), 10)
+  # AICc-corrected: at n=10 the 4-parameter bi-exp model is penalized by
+  # 2*k*(k+1)/(n-k-1) = 8 vs 12/7 for mono — the correction makes mono
+  # preferred at coarse sampling (dAIC < 0), which is the collapse claim
+  # in its correct small-sample form. The previous threshold |dAIC| < 10
+  # was calibrated to the uncorrected AIC formula.
+  expect_lt(tail(sweep$dAIC, 1), 0)
 })
 
 test_that("T-2i: deterministic under fixed seed (MPI blueprint)", {
