@@ -2,42 +2,18 @@
 
 **Design intent (Ed Phil, 2026-09-02).** order-relations is a place for
 the *abstract*. The synergetics concepts live here as pure objects — no
-substrate commitment, no directionality built in. Biology enters only at
+concrete commitment, no directionality built in. Biology enters only at
 instantiation time, as a mapping table, never inside the abstraction.
 
-## Design law: substrate stripping
+## Design law: 
 
-> An abstraction must be stateable with zero biological nouns. If it
-> can't, it's not an abstraction yet — it's a metaphor with a formula
-> attached.
+> An abstraction must be stateable without concrete reference
 
 Enforced structurally: every file in `R/` is noun-free except
-`flytrap.R`, the mapping table where biology is allowed in.
+`flytrap.R`, the mapping table where abstraction is mapped to empirical.
 
-## Design law: field, not stability
 
-> Model the field; do not assert stability. The field is the minimal
-> object the dynamics require — the space the variables move in, the
-> couplings that act on them. Stability is a determinate claim (against
-> what perturbation, over what horizon, for which vertex) and asserting
-> it commits the abstraction to a frame it does not need.
-
-Field and stability work at different levels. The field is the frame for
-what we do not need to infer; stability is per-instance, read from the
-mapping table, never intrinsic — the same move as Fix 1 (direction of
-drive per-instance). Stability is relative to what a vertex views a
-field as stable enough: a three-place relation — field, perturbation,
-vertex — where the vertex supplies the horizon. Its quantitative form
-is the integration window (row 10): a field is "stable enough" for v
-when it persists over v's window, λ·W_v ≪ 1 (W_v the vertex's window,
-λ the slow mode's decay rate). Critical slowing is the coincidence
-λ·W_v ~ 1 — the vertex can no longer resolve stable from unstable
-(observation-window collapse, T-2, read from the vertex side). Evans et
-al. 2026 is the working example: "formed in a stable field" is an
-observation about the instance; the abstraction needs only the field
-and the crossing (α > 0).
-
-## The flagship: slaving without directionality
+## slaving without directionality
 
 In the original synergetics formulation (Haken 1983) the order parameter
 enslaves the fast subsystems — one-way. The abstraction strips that:
@@ -46,7 +22,7 @@ enslaves the fast subsystems — one-way. The abstraction strips that:
 > Direction of drive is per-instance, read from f and g — never intrinsic
 > to the relation.
 
-This is the science paper's Fix 1 (post-jury revision) promoted from
+This is the original paper's Fix 1 (post-jury revision) promoted from
 paper edit to design law. The flytrap instantiates fast→slow;
 anesthesia instantiates λ entering f (fast side drives); the relation
 itself says neither.
