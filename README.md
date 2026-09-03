@@ -9,7 +9,7 @@ elimination), implemented as production-grade R packages.
 
 | Namespace | Domain | Conditions reproduced |
 |---|---|---|
-| `packages/order.relations` | The abstraction program — two-variable systems, direction-free slaving, elimination, relaxation, windows, critical slowing, formation. | T-1/T-2 verified, 51 assertions; flytrap first instantiation |
+| `packages/order.relations` | The abstraction program — two-variable systems, direction-free slaving, elimination, relaxation, windows, critical slowing, formation. | T-1/T-2 verified, 121 assertions (58 test_that blocks); flytrap first instantiation |
 | `packages/phosphene.foundry` | Scaffolding + STDD + contract system | CI on every package |
 | `packages/inferno` | INFERNO 7-layer evaluation protocol (WCI scoring) | Suite tests |
 | `packages/vi.stats` | Vestigial Information statistics: CDI, integration-depth rank, paired tests, sensitivity | Suite tests |
