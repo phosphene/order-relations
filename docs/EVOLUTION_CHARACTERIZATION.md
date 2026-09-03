@@ -45,7 +45,7 @@ Each layer is established by a different evidence class; the layers stack:
 |---|---|---|---|
 | 0 | Relation inventory: G-1…G-9 | genealogy scripts, 8/9 reproducible | **proof** (re-derivable math) |
 | 0.5 | Recomposition: A-1 excursion loop | one λ-sweep trajectory, 3/3 phase checks | **proof** (verified simulation) |
-| 1 | Two-rate law dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂) | LTEE ΔAIC 39.6 vs 190; T-1/T-2 verified | **proof-ish** (2/4 systems clean; 1 competitive, 1 questionable) |
+| 1 | Two-rate law dρ/dt = −k₁(ρ−ρ₁) − k₂(ρ−ρ₂) | LTEE ΔAIC 39.6 vs 190 *(unverified — see claim grades)*; T-1/T-2 verified | **proof-ish** (2/4 systems clean; 1 competitive, 1 questionable) |
 | 2 | Slaving architecture (direction-free) | Fix 1; flytrap instantiation W = 29.5 s | **theorem + instance** |
 | 3 | Empirical pattern: loss ordered by integration depth; displacement-first | E-series: E4 buchnera, E6 plastid, E7 cavefish, E12 domestication (behavior-first), C4-P2 (275→154→64 Mb post-commitment), E8 yeast, E9 ECM | **empirical** (data-backed, cross-kingdom) |
 | 4 | Monograph support: electrome chorus | Cervera/Levin/Mafé (fast→slow explicit), Blackiston, Kuchling *Volvox*, Varley, G&J UAL (behavior-before-morphology), Pio-Lopez AGED (re-access) | **literature synthesis** (conceptual alignment) |
@@ -61,22 +61,18 @@ documented in the library readout).
 
 ### Established — do not relitigate
 
-1. **The field had no rate equation; the two-rate form supplies one.**
-   Bi-exponential beats single-exponential on LTEE data (ΔAIC 39.6–190
-   depending on comparison; do not conflate exp-vs-linear with
-   bi-exp-vs-mono-exp — Appendix A).
-2. **The slaving relation is a timescale-separation fact, direction-free.**
+1. **The slaving relation is a timescale-separation fact, direction-free.**
    Proven in the abstraction; direction of drive is per-instance, read from
    f and g (Fix 1; G-3; G-8; G-9).
-3. **Loss orders by integration depth.** Orobanchaceae, plastid retention,
+2. **Loss orders by integration depth.** Orobanchaceae, plastid retention,
    cavefish regressive loss, symbiont one-way reduction (McCutcheon &
    Moran), earthworm ordering — consistent cross-kingdom pattern.
-4. **Displacement precedes relaxation in time.** E12 dated tree: genome
+3. **Displacement precedes relaxation in time.** E12 dated tree: genome
    reduction continuous *after* the commitment node (275 → 154 → 64 Mb);
    behavior-first domestication.
-5. **The precursor math is real:** G-1…G-9 reproducible (8/9), including
+4. **The precursor math is real:** G-1…G-9 reproducible (8/9), including
    the rigorous tiers (van Kampen O(ε) ladder, center-manifold exactness).
-6. **Inbound and outbound are one trajectory** across an instability
+5. **Inbound and outbound are one trajectory** across an instability
    (A-1 verified): relaxation → critical slowing → formation. The
    Ediacaran second wave (Evans et al. 2026) is consistent with this:
    steady progression rather than turnover — but it is field evidence,
@@ -84,38 +80,71 @@ documented in the library readout).
    bilaterians (with trace fossils) precede the second wave's
    morphological diversification — displacement-before-settling at
    ~567 Ma.
-7. **The monograph chorus on the electrome** (fast→slow transduction is
+6. **The monograph chorus on the electrome** (fast→slow transduction is
    *explicit* in the published top-down model of Cervera/Levin/Mafé;
    behavioral-competence-before-morphology in G&J).
 
+### Proof-ish — verification pending (downgraded 2026-09-03)
+
+1. **The field had no rate equation; the two-rate form supplies one —**
+   as a *claim about the literature* this stands: no competing rate
+   equation is cited in the monograph or the library readout. The
+   supporting *empirical* assertion — bi-exponential beats
+   single-exponential on LTEE data (ΔAIC 39.6–190) — is **NOT
+   established** and was removed from "do not relitigate" because its
+   evidence trail fails the verification standard (math-inflation
+   review, 2026-09-03; `drafts/math-inflation-review-order-relations-v1.md`):
+   - "Appendix A" does not exist in this repository — the claim's own
+     evidence pointer is dangling (see `docs/APPENDIX_A.md`, required).
+   - ΔAIC 39.6 is untraceable to any committed computation; the only
+     "39.6" in the evidence base is a *percentage* error in
+     simulacra-9-13, not an AIC.
+   - ΔAIC 190 traces to a results document (`key-results.md`), not to a
+     fit script or data file; "Davies' p = 0" is precision theater
+     (p-values are not exactly zero).
+   - The LTEE-like simulacrum in the codebase (ratio = 37) FAILED to
+     recover the ratio under the fitter used for the claim (322% error,
+     degenerate bound collapse) — the fitter was not verified on the
+     claim's own regime. The calibrated fitter (multi-start, off-boundary,
+     AICc) recovers ratio 37.4 vs true 37.7 (PR #2).
+   - The empirical record is mixed, not one-sided: endosymbiont
+     ΔAICc = 0.8 (unsettled, see 9), island-birds +4.0 (degenerate
+     k1≈k2), r6-c4 +3.96 (mono preferred). The range "39.6–190" quotes
+     only the favorable tail.
+   Re-promotion to "established" requires `docs/APPENDIX_A.md` to exist
+   and pass the verification standard: data file with provenance, fit
+   script (calibrated fitter), n per comparison, ΔAIC per comparison
+   (including where mono won), Davies' test with a real p-value, and the
+   simulacrum outcome reported alongside.
+
 ### Empirical but scope-limited (steady as she goes)
 
-8. **Cross-kingdom transferability** (yeast, ECM, plant, vertebrate) —
+7. **Cross-kingdom transferability** (yeast, ECM, plant, vertebrate) —
    real but each system needed its own fit; k₁/k₂ are not universal
    constants, they are instance parameters with a regime map.
-9. **Re-access (inbound, reverse loss order)** — predicted (Prediction 10,
+8. **Re-access (inbound, reverse loss order)** — predicted (Prediction 10,
    T-4 reframed as re-deployment); direct evidence thin and mostly
    anecdotal; the AGED atavistic re-expression is the best single referent.
 
 ### Not established / live — do not claim
 
-10. **The endosymbiont discriminator is UNSETTLED** (ΔAICc = 0.8).
+9. **The endosymbiont discriminator is UNSETTLED** (ΔAICc = 0.8).
     Discrete-vs-continuous unification is NOT claimed until T-5 resolves
     logistic-vs-biphasic. The single most important open discriminator.
-11. **Rate-remaining proportionality (λ ∝ remaining capacity) holds in
+10. **Rate-remaining proportionality (λ ∝ remaining capacity) holds in
     1 of 4 LTEE populations** — amber. The specific prediction that
     distinguishes exponential from generic deceleration.
-12. **Inbound trajectories (C4, Cambrian) are untested as rate-law fits.**
+11. **Inbound trajectories (C4, Cambrian) are untested as rate-law fits.**
     The deepest tension; now armed with formation machinery (G-5,
     formation.R) and the fluctuation precursor (C4-P1 P5), but no data
     fit yet.
-13. **Flytrap window: 24 vs 29.5 s ambiguity inherited from the
+12. **Flytrap window: 24 vs 29.5 s ambiguity inherited from the
     literature** — G-7 partially reproducible; T-6 bench re-verify is the
     discriminator, not an assumption.
-14. **Molecular sorting variable: expression-level mechanism open.**
+13. **Molecular sorting variable: expression-level mechanism open.**
     COX in *Genlisea* resolves it in ONE lineage (the first molecular
     sorting driver); κ = ∂²L/∂y² is the formal address, not a result.
-15. **The electrome as root is named, not proven causally.** Supported by
+14. **The electrome as root is named, not proven causally.** Supported by
     the chorus; challenged by Feinberg & Mallatt (consciousness needs
     neuroarchitecture — conceded, we claim valence-capable substrate) and
     by Watson/Levin/Lewens (electricity as one sub-mechanism level —
