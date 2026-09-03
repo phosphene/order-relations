@@ -85,10 +85,13 @@ test_that("bi-exponential relaxation matches the two-channel rate law", {
   rho_inf <- rate_law_equilibrium(k1, k2, rho1, rho2)
   # amplitudes: start at rho(0) = rho1 + rho2 style split
   A1 <- 0.5; A2 <- 0.5
-  ts <- seq(0, 1000, by = 1)
+  # anti-pattern fix: horizon must reach the SLOW rate (1/k2 = 100 here).
+  # t = 1000 leaves e^{-10} ~ 4.5e-5 above the asymptote, which fails the
+  # relative tolerance when rho_inf is small. Same lesson as hedgehog P9.
+  ts <- seq(0, 50 / min(k1, k2), by = 1)
   rho <- biexp_relaxation(ts, rho_inf, A1, A2, k1, k2)
   expect_true(all(diff(rho) <= 0))          # monotone relaxation
-  expect_equal(rho[length(rho)], rho_inf, tolerance = 1e-3)  # asymptote
+  expect_equal(rho[length(rho)], rho_inf, tolerance = 1e-6)  # asymptote
   # rate law consistency at a point
   drho <- rate_law(rho[1], k1, k2, rho1, rho2)
   expect_lt(drho, 0)
@@ -108,7 +111,10 @@ test_that("integration window: flytrap two-channel 29.5 s, one-channel 24 s", {
 test_that("window narrows monotonically under control-parameter sweep", {
   sweep <- window_sweep(tau1 = 8, a0 = 0.952, theta = 1, lambdas = seq(0, 0.45, by = 0.05))
   expect_true(all(diff(sweep$window) <= 0))
-  expect_true(all(sweep$window < sweep$window[1]))
+  # anti-pattern fix: strict inequality vs the first element compared index 1
+  # to itself (w[1] < w[1] is always FALSE) — the assertion could never pass.
+  # Use a fuzzy strict bound on the diffs instead.
+  expect_true(all(diff(sweep$window) < -1e-12 * pmax(1, abs(sweep$window[-1]))))
 })
 
 test_that("critical slowing: slow rate vanishes at lambda_c", {
@@ -121,7 +127,12 @@ test_that("critical slowing: slow rate vanishes at lambda_c", {
 test_that("flytrap instantiation: all derived values land on published anchors", {
   ft <- flytrap_instantiation()
   expect_true(ft$slaving)
-  expect_equal(ft$epsilon, 3.08e-5, tolerance = 1e-7)
+  # anti-pattern fix: 3.08e-5 is a rounded golden constant; the derived value
+  # is exactly tau1/tau2 = 8/(3*86400) = 3.08642e-5. Assert the analytic
+  # identity (relative tolerance now has honest meaning), keep the published
+  # anchor as a bracket check.
+  expect_equal(ft$epsilon, 8 / (3 * 86400), tolerance = 1e-7)
+  expect_true(ft$epsilon < 3.1e-5 && ft$epsilon > 3.0e-5)  # published anchor bracket
   expect_equal(ft$k1, 0.125, tolerance = 1e-6)
   expect_true(ft$window_in_bracket)
   expect_true(ft$window_two_channel > ft$window_one_channel)

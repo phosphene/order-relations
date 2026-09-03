@@ -22,7 +22,10 @@ test_that("T-2c: apparent ratio monotone non-increasing in delta", {
 test_that("T-2d: resolution anchor — delta* is where the fast phase is tol-decayed", {
   dstar <- resolution_delta(k1 = 1, tol = 0.05)
   expect_equal(fast_surviving(dstar, 1), 0.05, tolerance = 1e-6)
-  expect_equal(dstar, 3, tolerance = 1e-6)  # -ln(0.05)/1
+  # anti-pattern fix: assert the analytic identity, not the rounded golden
+  # constant 3 (actual value 2.995732 = -ln(0.05)/1 — the golden value would
+  # enshrine rounding drift as truth)
+  expect_equal(dstar, -log(0.05), tolerance = 1e-6)
 })
 
 test_that("T-2d2: ratio fully collapsed by 10/k1 (single observable rate)", {
