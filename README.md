@@ -1,6 +1,6 @@
 # order-relations
 
-A research space for **dynamical order relations**: each research program
+A research space for **dynamical order relations**: with each research program
 apparatus developed in its own namespace,  and its conditions reproduced.
 Rooted in synergetics (Haken: slaving, order parameters, adiabatic
 elimination), implemented as production-grade R packages.
@@ -9,7 +9,7 @@ elimination), implemented as production-grade R packages.
 
 | Namespace | Domain | Conditions reproduced |
 |---|---|---|
-| `packages/order.relations` | The abstraction program — two-variable systems, direction-free slaving, elimination, relaxation, windows, critical slowing, formation. Substrate-free by design law | T-1/T-2 verified, 51 assertions; flytrap first instantiation |
+| `packages/order.relations` | The abstraction program — two-variable systems, direction-free slaving, elimination, relaxation, windows, critical slowing, formation. | T-1/T-2 verified, 51 assertions; flytrap first instantiation |
 | `packages/phosphene.foundry` | Scaffolding + STDD + contract system | CI on every package |
 | `packages/inferno` | INFERNO 7-layer evaluation protocol (WCI scoring) | Suite tests |
 | `packages/vi.stats` | Vestigial Information statistics: CDI, integration-depth rank, paired tests, sensitivity | Suite tests |
