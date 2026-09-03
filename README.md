@@ -1,10 +1,9 @@
 # order-relations
 
-A research space for **dynamical order relations**: each research
-apparatus developed in its own namespace, its conditions reproduced.
+A research space for **dynamical order relations**: each research program
+apparatus developed in its own namespace,  and its conditions reproduced.
 Rooted in synergetics (Haken: slaving, order parameters, adiabatic
-elimination), implemented as production-grade R packages, pointed at
-the valence-ingress exploration corpus.
+elimination), implemented as production-grade R packages.
 
 ## Namespaces
 
@@ -16,16 +15,6 @@ the valence-ingress exploration corpus.
 | `packages/vi.stats` | Vestigial Information statistics: CDI, integration-depth rank, paired tests, sensitivity | Suite tests |
 | `scripts/genealogy/` | Precursor math per published standard (G-1…G-9), literate units in `docs/genealogy/` | 8/9 reproducible; G-7 ambiguous bracket |
 
-## Design laws
-
-1. **Substrate stripping.** Abstractions stateable with zero biological
-   nouns; biology enters only at instantiation (mapping tables).
-2. **Field, not stability.** Model the field; do not assert stability.
-   Stability is vertex-relative, per-instance, never intrinsic.
-3. **Namespace discipline.** Keep track of namespaces, work within a
-   domain, never mistake a projection for the object.
-
-Full statement: [docs/ABSTRACTION_PROGRAM.md](docs/ABSTRACTION_PROGRAM.md).
 
 ## Documentation
 
