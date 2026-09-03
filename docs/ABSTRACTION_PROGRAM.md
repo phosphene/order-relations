@@ -1,13 +1,11 @@
 # The Abstraction Program
 
-**Design intent (Ed Phil, 2026-09-02).** order-relations is a place for
+**Design intent (Ed Phillips, 2026-09-02).** order-relations is a place for
 the *abstract*. The synergetics concepts live here as pure objects — no
-concrete commitment, no directionality built in. Biology enters only at
-instantiation time, as a mapping table, never inside the abstraction.
+concrete commitment, no directionality built in.
+## Design: 
 
-## Design law: 
-
-> An abstraction must be stateable without concrete reference
+> An abstraction as without concrete reference
 
 Enforced structurally: every file in `R/` is noun-free except
 `flytrap.R`, the mapping table where abstraction is mapped to empirical.
@@ -33,7 +31,7 @@ itself says neither.
 | **Slaving** | slow mode persists, fast mode relaxes — timescale fact | flytrap: fast→slow |
 | **Drive** | per-instance coupling read from f,g | anesthesia: λ enters f — fast side drives |
 
-## The Jacobian: one object, many projections
+## The Jacobian
 
 The field's local linear map. Wherever f and g are differentiable,
 
@@ -43,15 +41,6 @@ The field's local linear map. Wherever f and g are differentiable,
 is defined pointwise — a pure field object (design law 2: defined, not
 asserted stable).
 
-**Status of the object (Ed Phil, 2026-09-02).** Analytically and
-axiomatically we assert the existence of a mathematical object we call
-the Jacobian; it also exists in the record as a genealogical fact in the
-history of numerical methods. But it is purely algebraic and has **no
-instantiation** — any implementation is always a partial slice or
-projection of this axiomatic object. The table below is a list of
-projections: canonical research programs differ in *which spectral fact
-of J they read*, i.e. which slice they project, not in the object. The
-object itself is never instantiated; only its projections are.
 
 | # | Read from J | Spectral fact | Canonical programs | Our row |
 |---|---|---|---|---|
@@ -94,22 +83,6 @@ regime map) and a code unit (function, test, simulation) at once.
 | 10 | Threshold window derivation | ours, via the above | W = τ₁·ln(n·a/(θ−a)) family | `integration_window()`, `window_sweep()` | flytrap 29.5 s (T-6 bench) |
 | 11 | Order-parameter formation | Haken; pitchfork amplitude equation | τ₂ẏ = α(λ)y − βy³; order parameter born at instability; the inbound half of g | `amplitude_dynamics()`, `growth_coefficient()`, `order_parameter_equilibria()`, `order_parameter_growth()`, `critical_fluctuations()`, `g_regime()` | C4 convergence, Cambrian radiation (INBOUND_OUTBOUND.md Move 2) |
 
-## Discipline
 
-- An abstraction earns its place by surviving the substrate-stripping
-  test (zero biological nouns).
-- Research × implementation: each inventory row is both a math result
-  and a code unit. The package is the research; the research is the
-  package.
-- Every quantitative claim lands as a test or a ticket before it lands
-  in a paper.
-- **Namespace discipline (Ed Phil, 2026-09-02).** Develop each given
-  research apparatus in its own namespace and reproduce its conditions —
-  nothing more. Keep track of namespaces, work within a domain; no
-  cross-apparatus claims, no commutation results to prove or assert.
-  A field apparatus and a determinate relative stability declaration
-  simply live in different namespaces; we never mix them (cf. genealogy
-  tiers: reproducible math, ambiguous bracket, data-dependent fits —
-  each reproduced under its own conditions). Implementations are
-  projections of axiomatic objects (see the Jacobian above): never
+- Every quantitative claim lands as a test or a ticket
   mistake a projection for the object.
