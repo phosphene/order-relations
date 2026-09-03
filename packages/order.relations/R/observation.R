@@ -103,6 +103,11 @@ sample_process <- function(times, A1, k1, A2, k2, noise = 0.001, seed = 42) {
 fit_biexp <- function(times, rho, maxit = 2000) {
   n <- length(times)
   stopifnot(n >= 6, maxit >= 1)
+  # shape + finiteness preconditions (M2/M3): a length mismatch would
+  # silently recycle the shorter vector and produce a synthetic converged
+  # fit on garbage; NA/NaN/Inf inputs must fail informatively, not corrupt.
+  stopifnot(length(rho) == n, !anyNA(times), !anyNA(rho),
+            all(is.finite(times)), all(is.finite(rho)))
   nll <- function(p) {
     A1 <- exp(p[1]); k1 <- exp(p[2]); A2 <- exp(p[3]); k2 <- exp(p[4])
     pred <- A1 * exp(-k1 * times) + A2 * exp(-k2 * times)
@@ -161,6 +166,9 @@ fit_biexp <- function(times, rho, maxit = 2000) {
 fit_monoexp <- function(times, rho, maxit = 2000) {
   n <- length(times)
   stopifnot(n >= 6, maxit >= 1)
+  # shape + finiteness preconditions (M2/M3), same discipline as fit_biexp
+  stopifnot(length(rho) == n, !anyNA(times), !anyNA(rho),
+            all(is.finite(times)), all(is.finite(rho)))
   nll <- function(p) {
     A <- exp(p[1]); k <- exp(p[2])
     pred <- A * exp(-k * times)

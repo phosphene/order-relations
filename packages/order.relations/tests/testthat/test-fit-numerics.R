@@ -80,7 +80,42 @@ test_that("sweep reports n per row (dAIC comparability)", {
   expect_true(all(is.finite(sweep$n)))
 })
 
-# ---- 5. diagnostics present ----
+# ---- 6. input validation (M2 recycling / M3 non-finite) ----
+
+test_that("length-mismatched times/rho fails instead of recycling (M2)", {
+  t <- seq(0, 10, length.out = 50)
+  rho <- sample_process(t, 1, 1, 1, 0.01, noise = 0)
+  # 25 vs 50 is a compatible multiple: R would silently recycle and fit
+  # garbage with converged=TRUE. The precondition must refuse it.
+  expect_error(fit_biexp(t[1:25], rho), "length")
+  expect_error(fit_monoexp(t[1:25], rho), "length")
+})
+
+test_that("non-finite inputs fail informatively (M3)", {
+  t <- seq(0, 10, length.out = 50)
+  rho <- sample_process(t, 1, 1, 1, 0.01, noise = 0)
+  rho_na <- rho; rho_na[10] <- NA
+  rho_nan <- rho; rho_nan[10] <- NaN
+  rho_inf <- rho; rho_inf[10] <- Inf
+  expect_error(fit_biexp(t, rho_na))
+  expect_error(fit_biexp(t, rho_nan))
+  expect_error(fit_biexp(t, rho_inf))
+  expect_error(fit_monoexp(t, rho_na))
+  expect_error(fit_monoexp(t, rho_nan))
+  expect_error(fit_monoexp(t, rho_inf))
+})
+
+test_that("valid inputs still fit after the preconditions", {
+  t <- seq(0, 20, length.out = 200)
+  rho <- sample_process(t, 1, 1, 1, 0.01, noise = 0.001, seed = 7)
+  fb <- fit_biexp(t, rho)
+  fm <- fit_monoexp(t, rho)
+  expect_true(fb$converged)
+  expect_true(fm$converged)
+  expect_equal(fb$k1 / fb$k2, 100, tolerance = 0.1)
+})
+
+# ---- 7. diagnostics present ----
 
 test_that("fit outputs carry grad_norm and n diagnostics", {
   set.seed(3)
