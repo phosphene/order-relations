@@ -22,7 +22,10 @@ test_that("T-2c: apparent ratio monotone non-increasing in delta", {
 test_that("T-2d: resolution anchor — delta* is where the fast phase is tol-decayed", {
   dstar <- resolution_delta(k1 = 1, tol = 0.05)
   expect_equal(fast_surviving(dstar, 1), 0.05, tolerance = 1e-6)
-  expect_equal(dstar, 3, tolerance = 1e-6)  # -ln(0.05)/1
+  # anti-pattern fix: assert the analytic identity, not the rounded golden
+  # constant 3 (actual value 2.995732 = -ln(0.05)/1 — the golden value would
+  # enshrine rounding drift as truth)
+  expect_equal(dstar, -log(0.05), tolerance = 1e-6)
 })
 
 test_that("T-2d2: ratio fully collapsed by 10/k1 (single observable rate)", {
@@ -49,10 +52,15 @@ test_that("T-2g: dAIC strongly supports bi-exp at fine sampling", {
   expect_gt(sweep$dAIC[1], 20)
 })
 
-test_that("T-2h: dAIC ~ 0 at coarse sampling (models indistinguishable)", {
+test_that("T-2h: coarse sampling — bi-exp no longer preferred (AICc)", {
   sweep <- window_collapse_sweep(1, 0.01, deltas = 10^seq(-2, 3, length.out = 13),
                                  noise = 0.001, seed = 42)
-  expect_lt(abs(tail(sweep$dAIC, 1)), 10)
+  # AICc-corrected: at n=10 the 4-parameter bi-exp model is penalized by
+  # 2*k*(k+1)/(n-k-1) = 8 vs 12/7 for mono — the correction makes mono
+  # preferred at coarse sampling (dAIC < 0), which is the collapse claim
+  # in its correct small-sample form. The previous threshold |dAIC| < 10
+  # was calibrated to the uncorrected AIC formula.
+  expect_lt(tail(sweep$dAIC, 1), 0)
 })
 
 test_that("T-2i: deterministic under fixed seed (MPI blueprint)", {

@@ -23,6 +23,7 @@ Depends:
 Imports:
     stats
 Suggests:
+    numDeriv,
     testthat (>= 3.0.0),
     covr,
     lintr,

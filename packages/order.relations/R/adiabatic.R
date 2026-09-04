@@ -67,10 +67,15 @@ landscape <- function(y, G) {
 curvature <- function(y, L, ystar = y[which.min(L)]) {
   stopifnot(length(y) == length(L), length(y) >= 3)
   i <- which.min(abs(y - ystar))
-  if (i == 1L || i == length(y)) {
-    # one-sided second difference at the boundary
+  if (i == 1L) {
+    # one-sided second difference at the LEFT boundary
     h <- y[i + 1L] - y[i]
     (L[i + 2L] - 2 * L[i + 1L] + L[i]) / h^2
+  } else if (i == length(y)) {
+    # one-sided second difference at the RIGHT boundary
+    # (backward differences — forward would index out of bounds)
+    h <- y[i] - y[i - 1L]
+    (L[i] - 2 * L[i - 1L] + L[i - 2L]) / h^2
   } else {
     h <- y[i + 1L] - y[i]
     (L[i + 1L] - 2 * L[i] + L[i - 1L]) / h^2

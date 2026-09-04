@@ -79,49 +79,143 @@ sample_process <- function(times, A1, k1, A2, k2, noise = 0.001, seed = 42) {
 }
 
 #' Nonlinear least-squares fit of a bi-exponential (log-parametrized)
+#'
+#' Multi-start L-BFGS-B on the log-parametrized SSE objective. Returns the
+#' best *valid* fit: converged, all parameters finite, and no parameter at
+#' a bound. The convergence flag alone is insufficient — a fit can report
+#' convergence while sitting in a degenerate corner (both rates at the upper
+#' bound, amplitudes at zero), which is a flat valley with a tiny gradient.
+#' See the LTEE-like calibration case (k1=17.7, k2=0.47): single-start
+#' collapsed to ratio 1.0 with converged=TRUE.
+#'
+#' Rates are returned ordered k1 >= k2 and the amplitudes are swapped to
+#' travel with their rates (anti-pattern fix: previously k1/k2 were swapped
+#' without A1/A2, mislabeling the pairs).
+#'
 #' @param times numeric vector
 #' @param rho numeric vector
-#' @param maxit integer: optim iterations
-#' @return list(k1, k2, A1, A2, sse, converged)
+#' @param maxit integer: optim iterations per start
+#' @return list(k1, k2, A1, A2, sse, converged, grad_norm, n) with k1 >= k2
+#'   and A1/A2 paired to their rates; converged = optim flag AND finite AND
+#'   off-boundary; grad_norm = log-parameter gradient norm at the solution
+#'   (diagnostic — flat valleys defeat gradient checks, see above).
 #' @export
 fit_biexp <- function(times, rho, maxit = 2000) {
+  n <- length(times)
+  stopifnot(n >= 6, maxit >= 1)
+  # shape + finiteness preconditions (M2/M3): a length mismatch would
+  # silently recycle the shorter vector and produce a synthetic converged
+  # fit on garbage; NA/NaN/Inf inputs must fail informatively, not corrupt.
+  stopifnot(length(rho) == n, !anyNA(times), !anyNA(rho),
+            all(is.finite(times)), all(is.finite(rho)))
   nll <- function(p) {
     A1 <- exp(p[1]); k1 <- exp(p[2]); A2 <- exp(p[3]); k2 <- exp(p[4])
     pred <- A1 * exp(-k1 * times) + A2 * exp(-k2 * times)
     sum((rho - pred)^2)
   }
-  fit <- stats::optim(
-    c(log(1), log(0.1), log(1), log(0.01)), nll, method = "L-BFGS-B",
-    lower = c(log(1e-8), log(1e-6), log(1e-8), log(1e-6)),
-    upper = c(log(1e6), log(1e6), log(1e6), log(1e6)),
-    control = list(maxit = maxit)
+  lower <- c(log(1e-8), log(1e-6), log(1e-8), log(1e-6))
+  upper <- c(log(1e6), log(1e6), log(1e6), log(1e6))
+  starts <- list(
+    c(log(1), log(0.1), log(1), log(0.01)),   # generic slow-fast
+    c(log(0.1), log(10), log(1), log(0.5)),   # fast-dominant regime
+    c(log(1), log(1), log(1), log(0.1)),      # comparable rates
+    c(log(5), log(50), log(1), log(0.5)),     # very fast first channel
+    c(log(0.01), log(0.5), log(1), log(5))    # slow first channel
   )
+  best <- NULL
+  for (s in starts) {
+    fit <- tryCatch(
+      stats::optim(s, nll, method = "L-BFGS-B",
+                   lower = lower, upper = upper,
+                   control = list(maxit = maxit)),
+      error = function(e) NULL
+    )
+    if (is.null(fit) || !all(is.finite(fit$par)) || !is.finite(fit$value)) next
+    at_bound <- any(fit$par <= lower + 1e-6 | fit$par >= upper - 1e-6)
+    if (is.null(best) || fit$value < best$fit$value) {
+      best <- list(fit = fit, at_bound = at_bound)
+    }
+  }
+  if (is.null(best)) {
+    return(list(k1 = NA_real_, k2 = NA_real_, A1 = NA_real_, A2 = NA_real_,
+                sse = Inf, converged = FALSE, grad_norm = NA_real_, n = n))
+  }
+  fit <- best$fit
   p <- fit$par
   k1 <- exp(p[2]); k2 <- exp(p[4])
-  if (k2 > k1) { tmp <- k1; k1 <- k2; k2 <- tmp }
-  list(k1 = k1, k2 = k2, A1 = exp(p[1]), A2 = exp(p[3]),
-       sse = fit$value, converged = fit$convergence == 0)
+  A1 <- exp(p[1]); A2 <- exp(p[3])
+  if (k2 > k1) { tmp <- k1; k1 <- k2; k2 <- tmp; tmpA <- A1; A1 <- A2; A2 <- tmpA }
+  grad_norm <- tryCatch(
+    sqrt(sum(numDeriv::grad(nll, p)^2)),
+    error = function(e) NA_real_
+  )
+  list(k1 = k1, k2 = k2, A1 = A1, A2 = A2,
+       sse = fit$value,
+       converged = fit$convergence == 0 && !best$at_bound &&
+         (is.na(grad_norm) || is.finite(grad_norm)),
+       grad_norm = grad_norm, n = n)
 }
 
 #' Nonlinear least-squares fit of a mono-exponential
+#' @param times numeric vector
+#' @param rho numeric vector
+#' @param maxit integer: optim iterations
+#' @return list(k, A, sse, converged, grad_norm, n); converged = optim flag
+#'   AND finite AND off-boundary (same discipline as fit_biexp)
 #' @export
 fit_monoexp <- function(times, rho, maxit = 2000) {
+  n <- length(times)
+  stopifnot(n >= 6, maxit >= 1)
+  # shape + finiteness preconditions (M2/M3), same discipline as fit_biexp
+  stopifnot(length(rho) == n, !anyNA(times), !anyNA(rho),
+            all(is.finite(times)), all(is.finite(rho)))
   nll <- function(p) {
     A <- exp(p[1]); k <- exp(p[2])
     pred <- A * exp(-k * times)
     sum((rho - pred)^2)
   }
-  fit <- stats::optim(
-    c(log(1), log(0.01)), nll, method = "L-BFGS-B",
-    lower = c(log(1e-8), log(1e-6)), upper = c(log(1e6), log(1e6)),
-    control = list(maxit = maxit)
+  lower <- c(log(1e-8), log(1e-6))
+  upper <- c(log(1e6), log(1e6))
+  starts <- list(
+    c(log(1), log(0.01)),
+    c(log(0.5), log(0.5)),
+    c(log(5), log(5))
   )
+  best <- NULL
+  for (s in starts) {
+    fit <- tryCatch(
+      stats::optim(s, nll, method = "L-BFGS-B",
+                   lower = lower, upper = upper,
+                   control = list(maxit = maxit)),
+      error = function(e) NULL
+    )
+    if (is.null(fit) || !all(is.finite(fit$par)) || !is.finite(fit$value)) next
+    if (is.null(best) || fit$value < best$fit$value) best <- list(fit = fit)
+  }
+  if (is.null(best)) {
+    return(list(k = NA_real_, A = NA_real_, sse = Inf,
+                converged = FALSE, grad_norm = NA_real_, n = n))
+  }
+  fit <- best$fit
   p <- fit$par
+  at_bound <- any(p <= lower + 1e-6 | p >= upper - 1e-6)
+  grad_norm <- tryCatch(
+    sqrt(sum(numDeriv::grad(nll, p)^2)),
+    error = function(e) NA_real_
+  )
   list(k = exp(p[2]), A = exp(p[1]), sse = fit$value,
-       converged = fit$convergence == 0)
+       converged = fit$convergence == 0 && !at_bound &&
+         (is.na(grad_norm) || is.finite(grad_norm)),
+       grad_norm = grad_norm, n = n)
 }
 
 #' Window-collapse sweep: fit-based and analytic apparent ratios vs delta
+#'
+#' dAIC is only reported when BOTH fits converged (anti-pattern fix:
+#' previously the AIC path ran unconditionally, so a stalled or degenerate
+#' fit could still produce a dAIC claim). Small-n rows use AICc
+#' (n - k - 1 > 0); n is reported per row so dAIC values are comparable
+#' only within a row, never across rows with different n.
 #'
 #' @param k1 numeric > 0: true fast rate
 #' @param k2 numeric > 0: true slow rate
@@ -131,11 +225,15 @@ fit_monoexp <- function(times, rho, maxit = 2000) {
 #' @param n_max integer: point cap for fine sampling
 #' @param noise numeric >= 0: seeded noise for the fits
 #' @param seed integer
-#' @return data.frame(delta, ratio_fit, dAIC, ratio_analytic, fast_surviving)
+#' @param maxit integer: optim iterations per fit (pass-through for tests)
+#' @return data.frame(delta, ratio_fit, dAIC, ratio_analytic, fast_surviving,
+#'   n, converged_b, converged_m); ratio_fit and dAIC are NA where the
+#'   fits did not converge
 #' @export
 window_collapse_sweep <- function(k1, k2, A1 = 1, A2 = 1,
                                   deltas = 10^seq(-2, 3, length.out = 15),
-                                  n_max = 30000, noise = 0.001, seed = 42) {
+                                  n_max = 30000, noise = 0.001, seed = 42,
+                                  maxit = 2000) {
   stopifnot(k1 > 0, k2 > 0, k1 > k2)
   span_base <- 2 / k2
   rows <- lapply(deltas, function(delta) {
@@ -143,21 +241,31 @@ window_collapse_sweep <- function(k1, k2, A1 = 1, A2 = 1,
     n <- min(n_max, max(6, ceiling(span / delta)))
     times <- seq(0, by = delta, length.out = n)
     rho <- sample_process(times, A1, k1, A2, k2, noise = noise, seed = seed)
-    fb <- fit_biexp(times, rho)
-    fm <- fit_monoexp(times, rho)
-    ratio_fit <- if (fb$converged && is.finite(fb$k2) && fb$k2 > 0) {
-      fb$k1 / fb$k2
+    fb <- fit_biexp(times, rho, maxit = maxit)
+    fm <- fit_monoexp(times, rho, maxit = maxit)
+    ok <- fb$converged && fm$converged &&
+      is.finite(fb$sse) && is.finite(fm$sse) && fb$sse > 0 && fm$sse > 0
+    ratio_fit <- if (ok && fb$k2 > 0) fb$k1 / fb$k2 else NA_real_
+    if (ok) {
+      k_b <- 4L; k_m <- 2L
+      aic_b <- n * log(fb$sse / n) + 2 * k_b
+      aic_m <- n * log(fm$sse / n) + 2 * k_m
+      # AICc correction when n - k - 1 > 0 (small-sample regime)
+      if (n - k_b - 1 > 0) aic_b <- aic_b + 2 * k_b * (k_b + 1) / (n - k_b - 1)
+      if (n - k_m - 1 > 0) aic_m <- aic_m + 2 * k_m * (k_m + 1) / (n - k_m - 1)
+      dAIC <- aic_m - aic_b
     } else {
-      NA_real_
+      dAIC <- NA_real_
     }
-    aic_b <- n * log(fb$sse / n) + 2 * 4
-    aic_m <- n * log(fm$sse / n) + 2 * 2
     data.frame(
       delta = delta,
       ratio_fit = ratio_fit,
-      dAIC = aic_m - aic_b,
+      dAIC = dAIC,
       ratio_analytic = apparent_rate_ratio(delta, k1, k2),
-      fast_surviving = fast_surviving(delta, k1)
+      fast_surviving = fast_surviving(delta, k1),
+      n = n,
+      converged_b = fb$converged,
+      converged_m = fm$converged
     )
   })
   do.call(rbind, rows)
