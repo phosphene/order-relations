@@ -94,28 +94,16 @@ test_that("Davies: Failure mode (no break)", {
   times <- seq(0, 20, by = 0.5)
   y <- 1.0 * exp(-1.0 * times) + rnorm(length(times), 0, 0.1)
   
-  # Fit with one break allowed
+  # Fit with one break allowed and check the no-break case doesn't overfit
   fit_breaks <- tryCatch({
-    breakpoints(lm(y ~ times), H = 1, boot.philipps = FALSE)$changepoints
+    breakpoints(lm(y ~ times), H = 1)$breakpoints
   }, error = function(e) NULL)
-  
+
   if (!is.null(fit_breaks)) {
-    # Generate simple linear regression with known break
-  set.seed(456)
-  n <- 100
-  x <- seq(0, 1, length.out = n)
-  y <- ifelse(x < 0.5, 2*x + rnorm(n, 0, 0.1), 
-              2*0.5 + 1 + rnorm(n, 0, 0.1))  # break at x=0.5
-  
-  # Check if detection works at all
-  bp_check <- tryCatch({
-    breakpoints(lm(y ~ x), H = 1)$breakpoints
-  }, error = function(e) NULL)
-  
-  if (!is.null(bp_check)) {
-    # Break detected (or not) - document empirically
-    expect_s3_class(bp_check, "breakpoints")
-    if (length(bp_check) > 0) {
+    # No-break data: a single breakpoint model should find nothing or
+    # document the false-positive rate empirically — never assert a break.
+    expect_s3_class(fit_breaks, "breakpoints")
+    if (length(fit_breaks) > 0) {
       warning("Break detected in no-break data - false positive rate to be quantified in calibration suite")
     }
   } else {

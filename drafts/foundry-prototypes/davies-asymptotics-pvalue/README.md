@@ -27,12 +27,19 @@ Independently implement Davies' asymptotic p-value corrections from first princi
 
 ---
 
-## Next Steps (Current Session)
-1. ✅ Create directory structure (this README)
-2. ⏳ Write test cases first
-3. ⏳ Implement manual calculation
-4. ⏳ Run test suite → all green
-5. ⏳ Commit to branch `prototype/davies-asymptotics-pvalue-v1`
-6. ⏳ Update main README with completed status
+## Status (2026-09-06)
 
-Ready to proceed?
+Complete — all six deliverables exist and the suite is green:
+
+1. ✅ `README.md` — this file
+2. ✅ `test-davies-asymptotics.R` — 6 suites / 103 assertions against the
+   real `davies_pvalue()` implementation (contract.md invariants)
+3. ✅ `implement-davies-asymptotics.R` — self-contained Davies (1987)
+   correction: union bound + extreme-value refinement; no strucchange
+   runtime dependency (literature reference only)
+4. ✅ `traceability.md` — number tracing to Davies 1987/1989
+5. ✅ `contract.md` — BDD specification (ordering invariant, monotonicity
+   in m_eff, m_eff = 1 degeneration, union-bound floor)
+6. ✅ `run-prototype.R` — executable test runner
+
+Verified on OC host: 103/103 assertions pass (R 4.3.2, testthat 3e).
