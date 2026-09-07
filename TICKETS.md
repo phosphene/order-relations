@@ -27,6 +27,10 @@ Source: exploration document §6 / Appendix E (`work/marsyas6/papers/valence-ing
 
 ## Foundry Backlog (carried over from r-artifact-foundry)
 
+| ID | Claim | Status | Target package |
+|-----|-------|--------|----------------|
+| T-10 | NCT eco-inheritance primitives — Laland/Odling-Smee/Feldman 1999 two-locus recursion with environmental feedback | **implemented, verified 2026-09-07** — analytic resource equilibrium (Eq. 3a) matched at 4 seeded p values; q̂ = R polymorphic-equilibrium line at 4.4e-16; primacy-weight identity (1996 reduction) verified; single-locus reduction at 1e-15; hitchhiking under LD≠0 documented; 20 testthat assertions green; literate unit docs/genealogy/G-10.md; iteration-budget + stiffness + spatial-well-mixed tension findings in workspace nct-math-review/ | order.relations (`eco_inheritance.R`) |
+
 ---
 
 ## Labels
