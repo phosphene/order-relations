@@ -54,7 +54,11 @@ jobs:
       - name: Run unit tests
         run: |
           cd packages/order.relations
-          Rscript -e "testthat::test_local(filter = 'unit', reporter = testthat::CheckReporter)"
+          # FIX(ci-baseline): testthat filter matches test DESCRIPTIONS, not
+          # filenames; no description contains 'unit', so this aborted with
+          # "No test files found" and CI was red on every run since inception
+          # (e.g. da940b2, 50e4eb9). Run the full suite.
+          Rscript -e "testthat::test_local(reporter = testthat::CheckReporter)"
       - name: Run full test suite
         run: |
           cd packages/order.relations
