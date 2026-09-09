@@ -41,7 +41,7 @@ fit_marquardt_biexp <- function(times, rho, init_par = c(A1=1, k1=10, A2=1, k2=1
       control = list(maxiter = maxit, factr = 1e7)
     )
   }, error = function(e) {
-    list(par = NA_real_, value = Inf, convergence = -1, message = e$message)
+    list(par = NA_real_, value = Inf, info = -1L, message = e$message)
   })
   
   # Post-fit processing: ensure parameter ordering (k1 > k2) and amplitude pairing
@@ -57,7 +57,10 @@ fit_marquardt_biexp <- function(times, rho, init_par = c(A1=1, k1=10, A2=1, k2=1
     
     result$par <- c(A1, k1, A2, k2)
     names(result$par) <- c("A1", "k1", "A2", "k2")
-    result$converged <- result$convergence == 0
+    # minpack.lm returns `info`, NOT `convergence` (verified empirically):
+    # info in 1:4 = convergence (relative reduction / iterate / both / orthogonality)
+    # info 5 = maxiter exceeded, 6-8 = tolerance floors
+    result$converged <- isTRUE(result$info %in% 1:4)
   } else {
     result$par <- rep(NA, 4)
     result$converged <- FALSE
